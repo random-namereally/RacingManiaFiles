@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1793685338 source:c:\users\youop\downloads\racing mania\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<math.h>
+	"gamelogic.h"
+
+1793685360 c:\users\youop\downloads\racing mania\gamelogic.h
+
