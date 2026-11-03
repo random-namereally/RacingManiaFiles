@@ -27,6 +27,13 @@ int main ()
 
     printf("\033[2J\033[H");
 
-    printf("printf(=== Welcome Torena to UmaMusume! ===  *pre-alpha*\n\n);");
+    printf("Imagine game here");
+
+    while (1)
+    {
+
+        switch (choice)
+    }
+
 
 }
