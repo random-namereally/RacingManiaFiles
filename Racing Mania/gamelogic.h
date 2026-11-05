@@ -5,7 +5,8 @@ typedef struct
  {
     char name[50];
 
-    int energy;
+    int current_energy;
+    int max_energy;
     int mood;
 
     int speed;
