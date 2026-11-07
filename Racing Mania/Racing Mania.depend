@@ -9,3 +9,45 @@
 
 1793685360 c:\users\youop\downloads\racing mania\gamelogic.h
 
+1794063431 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\main.c
+	"game_headers.h"
+
+1794035282 c:\users\youop\documents\github\racingmaniafiles\racing mania\gamelogic.h
+
+1794035282 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\gamelogic.c
+	<stdio.h>
+	<stdlib.h>
+	"gamelogic.h"
+
+1794035281 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\cblackjack.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
+1794078454 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\game_state.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	"game_state.h"
+
+1794063405 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\game_headers.c
+	"header_name.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<math.h>
+	"gamelogic.h"
+
+1794066688 c:\users\youop\documents\github\racingmaniafiles\racing mania\game_headers.h
+	"header_name.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<math.h>
+	"gamelogic.h"
+
+1794078454 c:\users\youop\documents\github\racingmaniafiles\racing mania\game_state.h
+

@@ -22,7 +22,7 @@ void overview_menu(Uma uma)
 {
     int input;
 
-    printf("=== Training Menu ===\n\n");
+    printf("=== Actions Menu ===\n\n");
     printf("Imagine game here\n");
     printf("\npress 99 to exit\n");
 

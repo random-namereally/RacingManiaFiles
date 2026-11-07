@@ -1,9 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
-#include <math.h>
-#include "gamelogic.h"
+#include "game_headers.h"
 
 int main ()
 {

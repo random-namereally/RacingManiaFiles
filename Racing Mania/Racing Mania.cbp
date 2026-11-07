@@ -31,6 +31,22 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="action_hub.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="game_headers.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="game_headers.h" />
+		<Unit filename="game_state.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="game_state.h" />
+		<Unit filename="gamelogic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="gamelogic.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
