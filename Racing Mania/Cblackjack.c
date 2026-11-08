@@ -6,21 +6,28 @@
 typedef struct{
     int roll;
     }roller;
-void rolldice(int *, int *);
-int main(){
-    srand((unsigned int)time(NULL));
-    int playertotal = 0;
-    int dealertotal = 0;
-    rolldice(&dealertotal, &playertotal);
-    rolldice(&dealertotal, &playertotal);
-    if(dealertotal <= 19){
 
-    }else
-{
+typedef struct{
+    int playertotal;
+    int dealertotal;
+    }BJscore;
 
-}
-}
 //for rolling the dice
+void rolldice(int *, int *);
+
+//seeding random
+void rand_seed(void);
+
+//initializing blackjack score to zero
+BJscore initialize_bj_score(void);
+
+int main(){
+    rand_seed();
+    BJscore score = initialize_bj_score();
+    rolldice(&score.dealertotal, &score.playertotal);
+    rolldice(&score.dealertotal, &score.playertotal);
+}
+
 void rolldice(int *dealertotal, int *playertotal)
 {
     roller dealer = {rand() % deck + 1};
@@ -32,4 +39,15 @@ void rolldice(int *dealertotal, int *playertotal)
     printf("Dealer points: %d \n", *dealertotal);
     printf("Player points: %d \n", *playertotal);
     printf("HOLD, RAISE, PUSH, FOLD \n");
+}
+
+void rand_seed(void){
+    srand((unsigned int)time(NULL));
+}
+
+BJscore initialize_bj_score(){
+    BJscore score;
+    score.playertotal = 0;
+    score.dealertotal = 0;
+    return score;
 }
