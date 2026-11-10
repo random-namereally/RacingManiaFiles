@@ -20,7 +20,8 @@ Deeper explanations can be inside the header itself. Thank you!
     #include <math.h>
 
 // User-defined headers
-//  include "header_name.h"     // Hello this is a brief what header encapsulates
+//  #include "header_name.h"     // Hello this is a brief of what header encapsulates
+
     #include "gamelogic.h"      // Old header deprecated, delete if I forgot to delete it
 //  #include "game_state.h"     // Central Hub for all game data. Includes Data validation.
 
