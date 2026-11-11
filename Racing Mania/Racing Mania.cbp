@@ -31,53 +31,35 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="ActiohHub.h" />
 		<Unit filename="ActionHub.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="Cblackjack.c">
+		<Unit filename="ActionHub.h" />
+		<Unit filename="DataManager.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="GameDataManager.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="GameDataManager.h" />
+		<Unit filename="DataManager.h" />
 		<Unit filename="GameHeaders.h" />
-		<Unit filename="MainMenu.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="MainMenu.h" />
 		<Unit filename="SharedDisplay.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="action_hub.c">
+		<Unit filename="StartCareer.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="action_hub.h">
+		<Unit filename="StartCareer.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Unit filename="display.c">
+		<Unit filename="StartMenu.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="game_headers.c">
+		<Unit filename="StartMenu.h" />
+		<Unit filename="TempHolder.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="game_headers.h" />
-		<Unit filename="game_state.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="game_state.h" />
-		<Unit filename="gamelogic.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="gamelogic.h" />
+		<Unit filename="TempHolder.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="main_menu.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="main_menu.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

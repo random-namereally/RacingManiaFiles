@@ -95,49 +95,49 @@ void update_racer_stat(Racer *racer, Pass stat_type, int modifier)
     switch (stat_type)
     {
         // racer well-being
-        case num_current_energy: racer->current_energy += modifier; break;
-        case num_max_energy: racer->max_energy += modifier; break;
-        case num_mood: racer->mood += modifier; break;
+        case NumCurrentEnergy: racer->current_energy += modifier; break;
+        case NumMaxEnergy: racer->max_energy += modifier; break;
+        case NumMood: racer->mood += modifier; break;
 
         //Racing stat display
-        case num_display_speed: racer->display_speed += modifier; break;
-        case num_display_stamina: racer->display_stamina += modifier; break;
-        case num_display_power: racer->display_power += modifier; break;
-        case num_display_guts: racer->display_guts += modifier; break;
-        case num_display_wit: racer->display_wit += modifier; break;
+        case NumDisplaySpeed: racer->display_speed += modifier; break;
+        case NumDisplayStamina: racer->display_stamina += modifier; break;
+        case NumDisplayPower: racer->display_power += modifier; break;
+        case NumDisplayGuts: racer->display_guts += modifier; break;
+        case NumDisplayWit: racer->display_wit += modifier; break;
 
         // Racing stats
-        case num_speed: racer->speed += modifier; racer->display_speed = racer->speed; break;
-        case num_stamina: racer->stamina += modifier; racer->display_stamina = racer->stamina; break;
-        case num_power: racer->power += modifier; racer->display_power = racer->power; break;
-        case num_guts: racer->guts += modifier; racer->display_guts = racer->guts; break;
-        case num_wit: racer->wit += modifier; racer->display_wit = racer->wit; break;
+        case NumSpeed: racer->speed += modifier; racer->display_speed = racer->speed; break;
+        case NumStamina: racer->stamina += modifier; racer->display_stamina = racer->stamina; break;
+        case NumPower: racer->power += modifier; racer->display_power = racer->power; break;
+        case NumGuts: racer->guts += modifier; racer->display_guts = racer->guts; break;
+        case NumWit: racer->wit += modifier; racer->display_wit = racer->wit; break;
 
         // Multipliers
-        case num_speed_mult: racer->speed_multiplier += modifier; break;
-        case num_stamina_mult: racer->stamina_multiplier += modifier; break;
-        case num_power_mult: racer->power_multiplier += modifier; break;
-        case num_guts_mult: racer->guts_multiplier += modifier; break;
-        case num_wit_mult: racer->wit_multiplier += modifier; break;
+        case NumSpeedMult: racer->speed_multiplier += modifier; break;
+        case NumStaminaMult: racer->stamina_multiplier += modifier; break;
+        case NumPowerMult: racer->power_multiplier += modifier; break;
+        case NumGutsMult: racer->guts_multiplier += modifier; break;
+        case NumWitMult: racer->wit_multiplier += modifier; break;
 
         // Affinities
-        case num_frontrunner_affinity: racer->frontrunner_affinity += modifier; break;
-        case num_pacechaser_affinity: racer->pacechaser_affinity += modifier; break;
-        case num_latesurger_affinity: racer->latesurger_affinity += modifier; break;
-        case num_endcloser_affinity: racer->endcloser_affinity += modifier; break;
+        case NumFrontrunnerAffinity: racer->frontrunner_affinity += modifier; break;
+        case NumPacechaserAffinity: racer->pacechaser_affinity += modifier; break;
+        case NumLatesurgerAffinity: racer->latesurger_affinity += modifier; break;
+        case NumEndcloserAffinity: racer->endcloser_affinity += modifier; break;
 
-        case num_dirt_affinity: racer->dirt_affinity += modifier; break;
-        case num_turf_affinity: racer->turf_affinity += modifier; break;
+        case NumDirtAffinity: racer->dirt_affinity += modifier; break;
+        case NumTurfAffinity: racer->turf_affinity += modifier; break;
 
-        case num_sprint_affinity: racer->sprint_affinity += modifier; break;
-        case num_mile_affinity: racer->mile_affinity += modifier; break;
-        case num_medium_affinity: racer->medium_affinity += modifier; break;
-        case num_long_affinity: racer->long_affinity += modifier; break;
+        case NumSprintAffinity: racer->sprint_affinity += modifier; break;
+        case NumMileAffinity: racer->mile_affinity += modifier; break;
+        case NumMediumAffinity: racer->medium_affinity += modifier; break;
+        case NumLongAffinity: racer->long_affinity += modifier; break;
 
         //Miscellaneous
-        case num_popularity: racer->popularity += modifier; break;
-        case num_fans: racer->fans += modifier; racer->display_fans = racer->fans; break;
-        case num_display_fans: racer->display_fans += modifier; break;
+        case NumPopularity: racer->popularity += modifier; break;
+        case NumFans: racer->fans += modifier; racer->display_fans = racer->fans; break;
+        case NumDisplayFans: racer->display_fans += modifier; break;
 
         //Error
         default: break;
@@ -150,17 +150,16 @@ void update_trainer_stat(Trainer *trainer, Pass stat_type, int modifier)
     {
 
         // Trainer finance display
-        case num_display_cash: trainer->display_cash += modifier; break;
-        case num_display_debt: trainer->display_debt += modifier; break;
-        case num_display_debt_limit: trainer->display_debt_limit += modifier; break;
-        case num_display_credit_score: trainer->display_credit_score += modifier; break;
+        case NumDisplayCash: trainer->display_cash += modifier; break;
+        case NumDisplayDebt: trainer->display_debt += modifier; break;
+        case NumDisplayDebtLimit: trainer->display_debt_limit += modifier; break;
+        case NumDisplayCreditScore: trainer->display_credit_score += modifier; break;
 
         // Trainer finance
-        case num_cash: trainer->cash += modifier; trainer->display_cash = trainer->cash; break;
-        case num_debt: trainer->debt += modifier; trainer->display_debt = trainer->debt; break;
-        case num_debt_limit: trainer->debt_limit += modifier; trainer->display_debt_limit = trainer->debt_limit; break;
-        case num_credit_score: trainer->credit_score += modifier; trainer->display_credit_score = trainer->credit_score; break;
-
+        case NumCash: trainer->cash += modifier; trainer->display_cash = trainer->cash; break;
+        case NumDebt: trainer->debt += modifier; trainer->display_debt = trainer->debt; break;
+        case NumDebtLimit: trainer->debt_limit += modifier; trainer->display_debt_limit = trainer->debt_limit; break;
+        case NumCreditScore: trainer->credit_score += modifier; trainer->display_credit_score = trainer->credit_score; break;
 
         //Error
         default: break;
@@ -182,49 +181,48 @@ int get_racer_stat(Racer *racer, Pass stat_type)
     switch (stat_type)
     {
         // racer well-being
-        case num_current_energy:return racer->current_energy;
-        case num_max_energy:return racer->max_energy;
-        case num_mood:return racer->mood;
+        case NumCurrentEnergy: return racer->current_energy;
+        case NumMaxEnergy: return racer->max_energy;
+        case NumMood: return racer->mood;
 
         // Display Racing stats
-        case num_display_speed: return racer->display_speed;
-        case num_display_stamina: return racer->display_stamina;
-        case num_display_power: return racer->display_power;
-        case num_display_guts: return racer->display_guts;
-        case num_display_wit: return racer->display_wit;
+        case NumDisplaySpeed: return racer->display_speed;
+        case NumDisplayStamina: return racer->display_stamina;
+        case NumDisplayPower: return racer->display_power;
+        case NumDisplayGuts: return racer->display_guts;
+        case NumDisplayWit: return racer->display_wit;
 
         // Racing stats
-        case num_speed:return racer->speed;
-        case num_stamina:return racer->stamina;
-        case num_power:return racer->power;
-        case num_guts:return racer->guts;
-        case num_wit: return racer->wit;
+        case NumSpeed: return racer->speed;
+        case NumStamina: return racer->stamina;
+        case NumPower: return racer->power;
+        case NumGuts: return racer->guts;
+        case NumWit: return racer->wit;
 
         // Multipliers
-        case num_speed_mult: return racer->speed_multiplier;
-        case num_stamina_mult: return racer->stamina_multiplier;
-        case num_power_mult: return racer->power_multiplier;
-        case num_guts_mult: return racer->guts_multiplier;
-        case num_wit_mult: return racer->wit_multiplier;
+        case NumSpeedMult: return racer->speed_multiplier;
+        case NumStaminaMult: return racer->stamina_multiplier;
+        case NumPowerMult: return racer->power_multiplier;
+        case NumGutsMult: return racer->guts_multiplier;
+        case NumWitMult: return racer->wit_multiplier;
 
         // Affinities
-        case num_frontrunner_affinity: return racer->frontrunner_affinity;
-        case num_pacechaser_affinity: return racer->pacechaser_affinity;
-        case num_latesurger_affinity: return racer->latesurger_affinity;
-        case num_endcloser_affinity: return racer->endcloser_affinity;
+        case NumFrontrunnerAffinity: return racer->frontrunner_affinity;
+        case NumPacechaserAffinity: return racer->pacechaser_affinity;
+        case NumLatesurgerAffinity: return racer->latesurger_affinity;
+        case NumEndcloserAffinity: return racer->endcloser_affinity;
 
-        case num_dirt_affinity: return racer->dirt_affinity;
-        case num_turf_affinity: return racer->turf_affinity;
+        case NumDirtAffinity: return racer->dirt_affinity;
+        case NumTurfAffinity: return racer->turf_affinity;
 
-        case num_sprint_affinity: return racer->sprint_affinity;
-        case num_mile_affinity: return racer->mile_affinity;
-        case num_medium_affinity: return racer->medium_affinity;
-        case num_long_affinity: return racer->long_affinity;
+        case NumSprintAffinity: return racer->sprint_affinity;
+        case NumMileAffinity: return racer->mile_affinity;
+        case NumMediumAffinity: return racer->medium_affinity;
+        case NumLongAffinity: return racer->long_affinity;
 
-        case num_popularity: return racer->popularity;
-        case num_fans: return racer->fans;
-        case num_display_fans: return racer->display_fans;
-
+        case NumPopularity: return racer->popularity;
+        case NumFans: return racer->fans;
+        case NumDisplayFans: return racer->display_fans;
         // Error
         default: printf("Error: Out of scope"); return -1;
     }
@@ -240,17 +238,16 @@ int get_trainer_stat(Trainer *trainer, Pass stat_type)
     switch (stat_type)
     {
         // Trainer finance display
-        case num_display_cash: return trainer->display_cash;
-        case num_display_debt: return trainer->display_debt;
-        case num_display_debt_limit: return trainer->display_debt_limit;
-        case num_display_credit_score: return trainer->display_credit_score;
+        case NumDisplayCash: return trainer->display_cash;
+        case NumDisplayDebt: return trainer->display_debt;
+        case NumDisplayDebtLimit: return trainer->display_debt_limit;
+        case NumDisplayCreditScore: return trainer->display_credit_score;
 
         // Trainer finance
-        case num_cash: return trainer->cash;
-        case num_debt: return trainer->debt;
-        case num_debt_limit: return trainer->debt_limit;
-        case num_credit_score: return trainer->credit_score;
-
+        case NumCash: return trainer->cash;
+        case NumDebt: return trainer->debt;
+        case NumDebtLimit: return trainer->debt_limit;
+        case NumCreditScore: return trainer->credit_score;
         // Error
         default: printf("Error: Out of scope"); return -1;
     }
@@ -261,21 +258,22 @@ char* get_trainer_name(Trainer *trainer)
     return trainer->name;
 }
 
+// Technically not robust, but we will move to raylib anyway so who cares //floats crashes it but raylib vrochacho
 int input_integer(int min, int max, int *input)
 {
+    int pass = scanf("%d", input);
 
-    if (scanf("%d", input) != 1)
-    {
-        while (getchar() != '\n');
-        return int_invalid_not_number;
-    }
+    // Clear input
+    int i;
+    int limit = 0;
+    while ((i = getchar()) != '\n' && i != -1)
 
-    while (getchar() != '\n');
+    // Classifies inputs
+    if (pass == 0||pass == -1) return IntInvalidNotInteger;
+    if (*input < min) return IntInvalidTooLow;
+    if (*input > max) return IntInvalidTooHigh;
 
-    if (*input < min) return int_invalid_too_low;
-    if (*input > max) return int_invalid_too_high;
-
-    return int_valid;
+    return IntValid;
 }
 
 void reset_inputs(MenuInputs *inputs)
