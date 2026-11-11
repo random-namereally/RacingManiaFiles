@@ -1,9 +1,8 @@
-#include "game_headers.h"
+#include "GameHeaders.h"
 
 int main ()
 {
-    Uma Jane = {"Jane Uma", 100, 5, 50, 50, 50, 50, 50};
-
-    game_intro_1();
-    overview_menu(Jane);
+    Racer trainee; Date date; Trainer trainer;
+    initialize_game(&trainee, &trainer, &date);
+    main_start_menu();
 }

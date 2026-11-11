@@ -1,5 +1,5 @@
-#ifndef GAME_HEADERS_H
-#define GAME_HEADERS_H
+#ifndef GAMEHEADERS_H
+#define GAMEHEADERS_H
 
 /*
 Hello GOATS, place your needed headers here so each file only uses "game_headers.h", for simpler coding.
@@ -18,10 +18,13 @@ Deeper explanations can be inside the header itself. Thank you!
     #include <string.h>
     #include <time.h>
     #include <math.h>
+    #include <ctype.h>
 
 // User-defined headers
-//  include "header_name.h"     // Hello this is a brief what header encapsulates
-    #include "gamelogic.h"      // Old header deprecated, delete if I forgot to delete it
-//  #include "game_state.h"     // Central Hub for all game data. Includes Data validation.
+//  #include "header_name.h"     // Hello this is a brief of what header encapsulates
+
+    #include "DataManager.h"     // Central Hub for all game data. Includes Data validation.
+    #include "MainMenu.h"
+
 
 #endif

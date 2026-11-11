@@ -31,9 +31,33 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="ActiohHub.h" />
+		<Unit filename="ActionHub.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Cblackjack.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="GameDataManager.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="GameDataManager.h" />
+		<Unit filename="GameHeaders.h" />
+		<Unit filename="MainMenu.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="MainMenu.h" />
+		<Unit filename="SharedDisplay.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="action_hub.c">
 			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="action_hub.h">
 			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="display.c">
+			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="game_headers.c">
 			<Option compilerVar="CC" />
@@ -50,6 +74,10 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="main_menu.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="main_menu.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

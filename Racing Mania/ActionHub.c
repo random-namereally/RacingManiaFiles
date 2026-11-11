@@ -1,24 +1,9 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include"gamelogic.h"
+#include"GameHeaders.h"
+#include"ActionHub.h"
 
-void game_intro_1 ()
-{
-
-    printf("=== Welcome Torena to UmaMusume! ===  *pre-alpha*\n\n");
-
-    printf("The trainee uma under your care is Jane Uma,\n you must train them for... 72 turns!\n\n");
-
-    printf("Jane Uma: Neigh and horse noises o algo\n\n");
-
-    printf("Press start to play the game."); scanf("%c");
-
-    printf("\033[2J\033[H");
-
-
-}
-
-void overview_menu(Uma uma)
+void overview_menu(Trainer trainer)
 {
     int input;
 
@@ -48,4 +33,4 @@ void overview_menu(Uma uma)
 
 }
 
-void universal_validator
+
