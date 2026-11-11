@@ -9,8 +9,8 @@
 
 1793685360 c:\users\youop\downloads\racing mania\gamelogic.h
 
-1794364618 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\main.c
-	"game_headers.h"
+1794367205 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\main.c
+	"GameHeaders.h"
 
 1794326641 c:\users\youop\documents\github\racingmaniafiles\racing mania\gamelogic.h
 
@@ -57,7 +57,7 @@
 	<string.h>
 	"DataManager.h"
 
-1794330204 c:\users\youop\documents\github\racingmaniafiles\racing mania\datamanager.h
+1794368420 c:\users\youop\documents\github\racingmaniafiles\racing mania\datamanager.h
 
 1794366492 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\actionhub.c
 	<stdio.h>
@@ -76,10 +76,13 @@
 	"DataManager.h"
 	"MainMenu.h"
 
-1794367067 c:\users\youop\documents\github\racingmaniafiles\racing mania\mainmenu.h
+1794368420 c:\users\youop\documents\github\racingmaniafiles\racing mania\mainmenu.h
 
 1794366463 c:\users\youop\documents\github\racingmaniafiles\racing mania\actionhub.h
 
-1794367190 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\mainmenu.c
+1794368420 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\mainmenu.c
+	"GameHeaders.h"
+
+1794367190 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\startmenu.c
 	"GameHeaders.h"
 

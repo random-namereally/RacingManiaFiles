@@ -2,7 +2,7 @@
 #define GAME_STATE_H
 
 // Game version for flair
-#define GAME_VERSION "v1.0"
+#define GAME_VERSION "v0.1"
 
 // When pulling or pushing data you should use this so it's easier to read, rather than numbers which can work but may me illegible.
 typedef enum
