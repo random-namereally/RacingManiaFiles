@@ -75,6 +75,7 @@ void make_player_choice(BJscore *score){
     printf("1 = HIT, 2 = STAND \n");
     while(1){
         scanf(" %c", &playerchoice);
+        while (getchar() != '\n');
     if(playerchoice == '1'){
         roll_player_dice(&score->playertotal);
         break;
@@ -82,7 +83,6 @@ void make_player_choice(BJscore *score){
         break;
     }else{
         printf("Please enter a valid input \n");
-        scanf(" %c", &playerchoice);
     }
 }
 }
