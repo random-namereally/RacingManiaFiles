@@ -95,3 +95,4 @@ static void print_error(int min, int max, int *status)
 void main_load_career_menu(){}
 void main_highscore_menu(){}
 void main_options_menu(){}
+

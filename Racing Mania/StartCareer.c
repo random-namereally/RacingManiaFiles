@@ -104,8 +104,10 @@ static void print_error(int min, int max, int *status)
 
 void name_trainee()
 {
-
+    char name[50];
+    Racer racer;
     //update_trainee_name(Racer racer, char *input)
+    update_racer_name(&racer, name);
 
 }
 void name_trainer()

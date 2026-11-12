@@ -148,9 +148,9 @@ typedef struct {
 void initialize_game(Racer *racer, Trainer *trainer, Date *date);
 void increment_turn(Date *date);
 
-void update_racer_stat(Racer *racer, Pass stat_type, int modifier);
-void update_trainer_stat(Trainer *trainer, Pass stat_type, int modifier);
-void update_racer_name(Racer *racer, char* input);
+void update_racer_stat(Racer *racer, Pass stat_type, int modifier); //update_racer_stat(&racer, stat_type, modifier);
+void update_trainer_stat(Trainer *trainer, Pass stat_type, int modifier); //update_trainer_stat(&trainer, stat_type, modifier);
+void update_racer_name(Racer *racer, char* input); //update_racer_name(&racer, input);
 void update_trainer_name(Trainer *trainer, char* input);
 
 int get_racer_stat(Racer *racer, Pass stat_type);
