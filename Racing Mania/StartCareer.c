@@ -110,6 +110,7 @@ void name_trainee()
     update_racer_name(&racer, name);
 
 }
+
 void name_trainer()
 {
     //update_trainer_name(Trainer *trainer, char *input)

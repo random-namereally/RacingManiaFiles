@@ -7,14 +7,9 @@
 // When pulling or pushing data you should use this so it's easier to read, rather than numbers which can work but may me illegible.
 typedef enum
 {
-NumCurrentEnergy,
+    NumCurrentEnergy,
     NumMaxEnergy,
     NumMood,
-    NumDisplaySpeed,
-    NumDisplayStamina,
-    NumDisplayPower,
-    NumDisplayGuts,
-    NumDisplayWit,
     NumSpeed,
     NumStamina,
     NumPower,
@@ -37,11 +32,6 @@ NumCurrentEnergy,
     NumLongAffinity,
     NumPopularity,
     NumFans,
-    NumDisplayFans,
-    NumDisplayCash,
-    NumDisplayDebt,
-    NumDisplayDebtLimit,
-    NumDisplayCreditScore,
     NumCash,
     NumDebt,
     NumDebtLimit,
@@ -51,12 +41,12 @@ NumCurrentEnergy,
 typedef enum
 {
     IntValid,
-    IntSet,
     IntInvalidNotInteger,
     IntInvalidTooLow,
     IntInvalidTooHigh,
     IntInvalidExceededLimit,
     IntInvalidOther,
+    IntSet,
 
 }InputValidity;
 
@@ -69,17 +59,11 @@ typedef struct
     int max_energy;
     int mood;
 
-    int display_speed;
-    int display_stamina;
-    int display_power;
-    int display_guts;
-    int display_wit;
-
-    float speed;
-    float stamina;
-    float power;
-    float guts;
-    float wit;
+    int speed;
+    int stamina;
+    int power;
+    int guts;
+    int wit;
 
     float speed_multiplier;
     float stamina_multiplier;
@@ -102,22 +86,17 @@ typedef struct
 
     int popularity;
     int fans;
-    float display_fans;
+    int display_fans;
 } Racer;
 
 typedef struct
  {
     char name[50];
 
-    int display_cash;
-    int display_debt;
-    int display_debt_limit;
-    int display_credit_score;
-
-    float cash;
-    float debt;
-    float debt_limit;
-    float credit_score;
+    int cash;
+    int debt;
+    int debt_limit;
+    int credit_score;
 
  } Trainer;
 
@@ -152,12 +131,6 @@ void update_racer_stat(Racer *racer, Pass stat_type, int modifier); //update_rac
 void update_trainer_stat(Trainer *trainer, Pass stat_type, int modifier); //update_trainer_stat(&trainer, stat_type, modifier);
 void update_racer_name(Racer *racer, char* input); //update_racer_name(&racer, input);
 void update_trainer_name(Trainer *trainer, char* input);
-
-int get_racer_stat(Racer *racer, Pass stat_type);
-char* get_racer_name(Racer *racer);
-
-int get_trainer_stat(Trainer *trainer, Pass stat_type);
-char* get_trainer_name(Trainer *trainer);
 
 int input_integer(int min, int max, int *input);
 void reset_inputs(MenuInputs *inputs);
