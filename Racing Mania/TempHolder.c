@@ -91,7 +91,7 @@ static void print_error(int min, int max, int *status)
 }
 
 
-//unimplemented code
+//unimplemented code, not part of template
 void main_load_career_menu(){}
 void main_highscore_menu(){}
 void main_options_menu(){}
