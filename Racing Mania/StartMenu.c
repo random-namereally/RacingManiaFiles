@@ -10,7 +10,7 @@ typedef enum
     StartCareer,
     LoadCareer,
     ViewHighscore,
-    Options,
+    Debug,
     ExitGame,
     Error,
 } CHOICES;
@@ -90,7 +90,7 @@ static void execute (int *choice)
         case StartCareer:   main_start_career_menu();                                   break;
         case LoadCareer:    main_load_career_menu();                                    break;
         case ViewHighscore: main_highscore_menu();                                      break;
-        case Options:       main_options_menu();                                        break;
+        case Debug:         main_debug_menu();                                        break;
         case ExitGame:      printf("\033[2J\033[HThanks for playing!\n"); exit(0);               break;
         case Error: printf("\n\n[Error: End of menu. Exiting program]"); exit(1);
         default: printf("\n\n[Error: No code to execute. Check execute() or min and max?]"); break;
