@@ -9,7 +9,7 @@ typedef enum
     TEMP,
     StartCareer,
     LoadCareer,
-    ViewHighscore,
+    ViewLeaderboard,
     Debug,
     ExitGame,
     Error,
@@ -18,10 +18,10 @@ typedef enum
 //Declaration of single file functions
 static void display_menu ();
 static void get_input(int min, int max, MenuInputs *input);
-static void execute (int *choice);
-static void print_error(int min, int max, int *status);
+static int execute (int *choice, GameData *gamedata);
+static void err_msg(int min, int max, int *status);
 
-void main_start_menu()
+int main_start_menu(GameData *gamedata)
 {
     //Initializes variables of the menu
     int min = 1, max = 5;
@@ -36,11 +36,7 @@ void main_start_menu()
 
     //Input Validation and Execution
     get_input(min, max, &input);
-    execute(&input.choice);
-
-    //Player must be out of the menu by then.
-    input.choice = Error;
-    execute(&input.choice);
+    return execute(&input.choice, gamedata);
 }
 
 // Displays example menu
@@ -58,9 +54,9 @@ static void display_menu(int min, int max)
 
     printf("2. Load Ongoing Career\n");
 
-    printf("3. View Highscores\n");
+    printf("3. View Leaderboard\n");
 
-    printf("4. Options\n");
+    printf("4. Debug and options\n");
 
     printf("5. Quit Game                                   %s\n", GAME_VERSION);
 
@@ -75,7 +71,7 @@ static void get_input(int min, int max, MenuInputs *input)
     do
     {
         input->status = input_integer(min,max,&input->choice);
-        print_error(min, max, &input->status);
+        err_msg(min, max, &input->status);
         printf("\033[2J\033[H");
         display_menu(min, max);
     }
@@ -83,14 +79,14 @@ static void get_input(int min, int max, MenuInputs *input)
 }
 
 // Executes validated choice
-static void execute (int *choice)
+static int execute (int *choice, GameData *gamedata)
 {
     switch (*choice)
     {
-        case StartCareer:   main_start_career_menu();                                   break;
-        case LoadCareer:    main_load_career_menu();                                    break;
-        case ViewHighscore: main_highscore_menu();                                      break;
-        case Debug:         main_debug_menu();                                        break;
+        case StartCareer:       return SceneStartCareer;
+        case LoadCareer:        return SceneLoadCareer;
+        case ViewLeaderboard:   return SceneViewLeaderboard;
+        case Debug:             return SceneDebug;
         case ExitGame:      printf("\033[2J\033[HThanks for playing!\n"); exit(0);               break;
         case Error: printf("\n\n[Error: End of menu. Exiting program]"); exit(1);
         default: printf("\n\n[Error: No code to execute. Check execute() or min and max?]"); break;
@@ -98,7 +94,7 @@ static void execute (int *choice)
 }
 
 //Prints message based on error number given
-static void print_error(int min, int max, int *status)
+static void err_msg(int min, int max, int *status)
 {
 
     if (*status==IntValid) {return;}

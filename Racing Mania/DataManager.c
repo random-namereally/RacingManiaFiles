@@ -6,9 +6,9 @@
 
 
 // Initializes all values needed for game startup (WIP)
-void initialize_game(Racer *racer, Trainer *trainer, Date *date)
+void initialize_game(GameData *gamedata)
 {
-    *racer = (Racer)
+    gamedata->trainee = (Racer)
     {
         .name = "Magnolia Inam O",
 
@@ -45,7 +45,7 @@ void initialize_game(Racer *racer, Trainer *trainer, Date *date)
         .fans = 0,
     };
 
-    *trainer = (Trainer)
+    gamedata->trainer = (Trainer)
     {
         .cash = 0,
         .debt = 0,
@@ -53,7 +53,7 @@ void initialize_game(Racer *racer, Trainer *trainer, Date *date)
         .credit_score = 0,
     };
 
-    *date = (Date)
+    gamedata->date = (Date)
     {
         .turn = 1,
         .biweek = 1,
@@ -169,34 +169,6 @@ int input_integer(int min, int max, int *input)
 
     return IntValid;
 }
-
-/*
-functions of dynamic input integer
-takes struct input
-
-struct inputdata
-inputtype
-inputstatus
-
-struct inputtype
-int inputint,
-float inputfloat,
-char inputchar,
-char* intputstring,
-
-struct inputstatus //this is fine
-int mode //dialog stuff, determines what kind of dailog
-int count //dialog stuff, determines where in the dialog tree
-bool valid
-bool invalidtoohigh
-bool invalidtoolow
-bool invalidfloat
-bool invalidempty
-bool invalidcrash
-
-guh that's what i already did
-
-*/
 
 void reset_inputs(MenuInputs *inputs)
 {

@@ -39,6 +39,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="DataManager.h" />
+		<Unit filename="Debug.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Debug.h" />
 		<Unit filename="GameHeaders.h" />
 		<Unit filename="SharedDisplay.c">
 			<Option compilerVar="CC" />
@@ -46,9 +50,7 @@
 		<Unit filename="StartCareer.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="StartCareer.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
+		<Unit filename="StartCareer.h" />
 		<Unit filename="StartMenu.c">
 			<Option compilerVar="CC" />
 		</Unit>

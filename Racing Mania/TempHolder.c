@@ -11,9 +11,9 @@ typedef enum
 static void display_menu (int min, int max);
 static void get_input(int min, int max, MenuInputs *input);
 static void execute (int *choice);
-static void print_error(int min, int max, int *status);
+static void err_msg(int min, int max, int *status);
 
-void main_example_menu()
+int main_example_menu()
 {
     //Initializes variables of the menu
     int min = 1, max = 5;
@@ -59,7 +59,7 @@ static void get_input(int min, int max, MenuInputs *input)
     do
     {
         input->status = input_integer(min , max,&input->choice);
-        print_error(min, max, &input->status);
+        err_msg(min, max, &input->status);
         printf("\033[2J\033[H");
         display_menu(min, max);
     }
@@ -78,7 +78,7 @@ static void execute (int *choice)
 }
 
 //Prints message based on error number given
-static void print_error(int min, int max, int *status)
+static void err_msg(int min, int max, int *status)
 {
 
     if (*status==IntValid) {return;}
@@ -92,7 +92,7 @@ static void print_error(int min, int max, int *status)
 
 
 //unimplemented code, not part of template
-void main_load_career_menu(){}
-void main_highscore_menu(){}
-void main_options_menu(){}
+int main_load_career_menu(GameData *gamedata){}
+int main_leaderboard_menu(GameData *gamedata){}
+int main_options_menu(){}
 

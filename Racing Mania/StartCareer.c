@@ -14,12 +14,12 @@ typedef enum
 //Declaration of single file functions
 static void display_menu (int min, int max, int is_trainer_named, int is_trainee_named);
 static void get_input(int min, int max, int is_trainer_named, int is_trainee_named, MenuInputs *input);
-static void execute (int *choice);
-static void print_error(int min, int max, int *status);
+static int execute (int *choice, GameData *gamedata);
+static void err_msg(int min, int max, int *status);
 void name_trainee();
 void name_trainer();
 
-void main_start_career_menu()
+int main_start_career_menu(GameData *gamedata)
 {
     //Initializes variables of the menu
     int min = 1, max = 5, is_trainer_named = 0, is_trainee_named = 0;
@@ -34,11 +34,7 @@ void main_start_career_menu()
 
     //Input Validation and Execution
     get_input(min, max, is_trainer_named, is_trainee_named, &input);
-    execute(&input.choice);
-
-    //Player must be out of the menu by then.
-    input.choice = Error;
-    execute(&input.choice);
+    return execute(&input.choice, gamedata);
 }
 
 // Displays example menu
@@ -68,7 +64,7 @@ static void get_input(int min, int max, int is_trainer_named, int is_trainee_nam
     do
     {
         input->status = input_integer(min , max,&input->choice);
-        print_error(min, max, &input->status);
+        err_msg(min, max, &input->status);
         printf("\033[2J\033[H");
         display_menu(min, max, is_trainer_named, is_trainee_named);
     }
@@ -76,21 +72,20 @@ static void get_input(int min, int max, int is_trainer_named, int is_trainee_nam
 }
 
 // Executes validated choice
-static void execute (int *choice)
+static int execute (int *choice, GameData *gamedata)
 {
     switch (*choice)
     {
-        case TEMP:                                      break;
-        case NameTrainee:    name_trainee();                                        break;
-        case NameTrainer:    name_trainer();                                        break;
-        case StartMenu:      main_start_menu();                                     break;
+        case NameTrainee:    name_trainee(); return SceneStartCareer;                                       break;
+        case NameTrainer:    name_trainer(); return SceneStartCareer;                                      break;
+        case StartMenu:      return SceneStartMenu;                                     break;
         case Error: printf("\n\n[Error: End of menu. Exiting program]"); exit(1);
         default: printf("\n\n[Error: No code to execute. Check execute() or min and max?]");break;
     }
 }
 
 //Prints message based on error number given
-static void print_error(int min, int max, int *status)
+static void err_msg(int min, int max, int *status)
 {
 
     if (*status==IntValid) {return;}
@@ -104,10 +99,7 @@ static void print_error(int min, int max, int *status)
 
 void name_trainee()
 {
-    char name[50];
-    Racer racer;
     //update_trainee_name(Racer racer, char *input)
-    update_racer_name(&racer, name);
 
 }
 

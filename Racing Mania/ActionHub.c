@@ -3,7 +3,7 @@
 #include"GameHeaders.h"
 #include"ActionHub.h"
 
-void overview_menu(Trainer trainer)
+int overview_menu(Trainer trainer)
 {
     int input;
 

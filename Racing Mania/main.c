@@ -2,7 +2,23 @@
 
 int main ()
 {
-    Racer trainee; Date date; Trainer trainer;
-    initialize_game(&trainee, &trainer, &date);
-    main_start_menu();
+    GameData gamedata;
+    initialize_game(&gamedata);
+
+  int current_scene = SceneStartMenu;
+  while(1)
+  {
+    switch (current_scene)
+    {
+    case SceneStartMenu:    current_scene = main_start_menu(&gamedata); break;
+    case SceneStartCareer: current_scene = main_start_career_menu(&gamedata); break;
+    case SceneLoadCareer: current_scene = main_load_career_menu(&gamedata); break;
+    case SceneViewLeaderboard: current_scene = main_leaderboard_menu(&gamedata); break;
+    case SceneDebug: current_scene = main_debug_menu(&gamedata); break;
+    //case SceneAction_hub: current_scene = action_hub_menu(&gamedata); break;
+    //case SceneEnding: current_scene = ending_screen(&gamedata);break;
+    default: current_scene = SceneStartMenu; break;
+    }
+  }
+
 }

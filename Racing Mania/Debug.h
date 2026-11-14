@@ -1,6 +1,6 @@
 #ifndef DEBUG_H
 #define DEBUG_H
 
-void main_options_menu();
+int main_debug_menu(GameData *gamedata);
 
 #endif // DEBUG_H
