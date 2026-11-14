@@ -24,8 +24,11 @@ void rand_seed(void);
 //initializing blackjack score to zero
 BJscore initialize_bj_score(void);
 
-//showing current points for dealer and player
-void print_points(BJscore);
+//showing current points for player
+void print_player_points(BJscore);
+
+//showing current points for dealer
+void print_dealer_points(BJscore);
 
 //makes player choose between hit or stand
 void make_player_choice(BJscore *score);
