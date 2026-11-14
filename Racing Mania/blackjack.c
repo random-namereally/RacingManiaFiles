@@ -2,16 +2,26 @@
 #include <stdlib.h>
 #include <time.h>
 #include "blackjack.h"
+
 void roll_player_dice(int *playertotal){
-    roller player = {rand() % DECK_SIZE + 1};
+    roller player = {rand() % deck_size + 1};
     printf("You rolled: %d \n", player.roll);
-    *playertotal += player.roll;
+    if(player.roll == 11 && *playertotal + player.roll > 21){
+        printf("To prevent busting your ace is converted to 1");
+        *playertotal += 1;
+    }else{
+        *playertotal += player.roll;
+    }
 }
 
 void roll_dealer_dice(int *dealertotal){
-    roller dealer = {rand() % DECK_SIZE + 1};
+    roller dealer = {rand() % deck_size + 1};
     printf("Dealer rolled: %d \n", dealer.roll);
-    *dealertotal += dealer.roll;
+    if(dealer.roll == 11 && *dealertotal + dealer.roll > 21){
+        *dealertotal += 1;
+    }else{
+        *dealertotal += dealer.roll;
+    }
 }
 
 void rand_seed(void){
@@ -25,11 +35,13 @@ BJscore initialize_bj_score(void){
     return score;
 }
 
-void print_points(BJscore score){
-    printf("Dealer points: %d \n", score.dealertotal);
+void print_player_points(BJscore score){
     printf("Player points: %d \n", score.playertotal);
 }
 
+void print_dealer_points(BJscore score){
+    printf("Dealer points: %d \n", score.dealertotal);
+}
 void make_player_choice(BJscore *score){
     char playerchoice = '0';
     printf("HIT, STAND \n");
