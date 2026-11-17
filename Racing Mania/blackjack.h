@@ -33,4 +33,10 @@ void print_dealer_points(BJscore);
 //makes player choose between hit or stand
 void make_player_choice(BJscore *score);
 
+//makes the dealer choose between hit or stand
+void make_dealer_choice(BJscore *score);
+
+//compares the totalscore of the dealer and player to decide winner
+void compare_player_dealer_total(BJscore *score);
+
 #endif
