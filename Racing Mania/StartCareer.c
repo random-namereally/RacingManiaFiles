@@ -14,9 +14,9 @@ typedef enum
 //Declaration of single file functions
 static void display_menu (int min, int max, int is_trainer_named, int is_trainee_named);
 static void get_input(int min, int max, int is_trainer_named, int is_trainee_named, MenuInputs *input);
-static int execute (int *choice, GameData *gamedata);
+static int execute (MenuInputs *input, int *is_trainee_named, int *is_trainer_named, GameData *gamedata);
 static void err_msg(int min, int max, int *status);
-//void name_trainee();
+void name_trainee(MenuInputs *input, int *is_trainee_named);
 void name_trainer();
 
 int main_start_career_menu(GameData *gamedata)
@@ -34,7 +34,7 @@ int main_start_career_menu(GameData *gamedata)
 
     //Input Validation and Execution
     get_input(min, max, is_trainer_named, is_trainee_named, &input);
-    return execute(&input.choice, gamedata);
+    return execute(&input, &is_trainee_named, &is_trainer_named, gamedata);
 
     //Out of bounds catcher
     return SceneError;
@@ -75,11 +75,11 @@ static void get_input(int min, int max, int is_trainer_named, int is_trainee_nam
 }
 
 // Executes validated choice
-static int execute (int *choice, GameData *gamedata)
+static int execute (MenuInputs *input, int *is_trainee_named, int *is_trainer_named, GameData *gamedata)
 {
-    switch (*choice)
+    switch (input->choice)
     {
-        case NameTrainee:    //name_trainee(); return SceneStartCareer;                                       break;
+        case NameTrainee:    name_trainee(input, is_trainee_named); return SceneStartCareer;                                       break;
         case NameTrainer:    name_trainer(); return SceneStartCareer;                                      break;
         case StartMenu:      return SceneStartMenu;                                     break;
         case Error: printf("\n\n[Error: End of menu. Exiting program]"); exit(1);
@@ -100,17 +100,18 @@ static void err_msg(int min, int max, int *status)
     while (getchar() != '\n');
 }
 
-// void name_trainee(char input, int *istraineenamed)
-//{
-    //while (input.confirm==0){
-    //input_character(*input);
-    //confirm_character(*input);
-    //update_trainee_name(Racer racer, char *input)
-    //}
+void name_trainee(MenuInputs *input, int *is_trainee_named)
+{
+    while (input->confirm==0){
+    input_character(input->name);
+    printf("The name of your uma is %s", input->name);
+//    confirm_character(*input, pass);
+//    update_trainee_name(Racer racer, char *input)
+    }
 
-    //if(input.confirm==1) istraineenamed=1;
+    if(input->confirm==1) *is_trainee_named=1;
 
-//}
+}
 
 void name_trainer()
 {

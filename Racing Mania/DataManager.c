@@ -1,10 +1,6 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<math.h>
-#include<string.h>
-#include"DataManager.h"
+#include"GameHeaders.h"
 
-#define NAMESIZE 51
+
 
 
 // Initializes all values needed for game startup (WIP)
@@ -162,7 +158,6 @@ int input_integer(int min, int max, int *input)
 
     // Clear input
     int i;
-    int limit = 0;
     while ((i = getchar()) != '\n' && i != -1);
 
     // Classifies inputs
@@ -173,45 +168,58 @@ int input_integer(int min, int max, int *input)
     return IntValid;
 }
 
-/*
-
 int input_character(char *input)
 {
-    // NAMESIZE is a DEFINED at 51
-char* temp[100];
+    // 1. Initialization of function
+    // Note: NAMESIZE is a DEFINED at 51
+    char temp[NAMESIZE]={0}; // Temporary holder of input
+    int truncated = 0, empty = 0; // Classifies inputs for custom confirm handling
 
-    fgets(temp, 100, stdin);
+    fgets(temp, sizeof(temp), stdin); // Gets input from user
 
-    // Adjusts input
-        while(1)
+    // 2. Alter input to standard. Ie no leading or trailing spaces
+    // with a terminator at the very end of the string
+
+    // a. Truncate check and flush if triggered
+    if(strchr(temp, '\n')==0)
+    {
+        int c; while ((c = getchar()) != '\n' && c != EOF); // Flushes stdin of uncaptured data
+        truncated++;
+    }
+
+
+    // b. Removes leading spaces
+
+        // isspace handles most non-printing characters
+        // Unsigned char is due to possible emoji use (Can our code even show it?)
+        while(isspace((unsigned char)temp[0])||(unsigned char)temp[0] == 0xA0 )
         {
-            if (temp[0]==' ')
-            {
-                for(int j=0; j<NAMESIZE-1; j++)
-
-                {
-                    if (temp[j]=='\0') {j=9999; break;}
-                    temp[j] = temp[j+1];
-                }
-            }
-            else break;
+           memmove(temp, temp+1, strlen(temp));
         }
 
-// Classifies inputs (Actually all inputs are valid but we will give warnings)
-   
-if (strlen(temp)==0) {strcpy(input, "Great Taste Kopik O"); return IntInvalidTooLow;}
+    // c. Replaces first trailing space with terminator
 
- if (strchr(temp, '\n')==0)  {
-temp[NAMESIZE-1] = '\0';
-int c; while ((c = getchar()) != '\n' && c != EOF);
-strncpy{input, temp, NAMESIZE};
-return IntInvalidTooHigh;}
-else {temp[strcspn(temp, "\n")] = '\0';}
- 
-strncpy(input, temp, NAMESIZE);
-    return IntValid;
+        int i = strlen(temp)-1;
+        while (i>=0 && (isspace((unsigned char)temp[i])||(unsigned char)temp[i] == 0xA0))
+        {i--;} temp[i+1]='\0'; // Same shtick as earlier, removes trailing spaces
 
-*/
+    // z. actually in the wrong function ignore for now.
+    /* strcpy(input, "Great Taste Kopik O");
+        input[strlen("Great Taste Kopik O")] = '\0'; */
+
+    // d. if string is empty place warning
+    if (strlen(temp)==0) empty++;
+
+
+    strncpy(input, temp, NAMESIZE); // Places temp into input after cleaning and classification
+
+    // Final Verdict
+    if (truncated + empty == 2) {return CharTruncatedAndEmpty;} // If the string is truncated yet empty
+    if (truncated == 1) {return CharTruncated;} // If the string is truncated but has character
+    if (empty == 1) {return CharEmpty;} // If the string has nothing inside except for terminator
+    return CharValid; // If no flags are triggered
+}
+
 
 void reset_inputs(MenuInputs *inputs)
 {

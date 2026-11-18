@@ -2,7 +2,8 @@
 #define GAME_STATE_H
 
 // Game version for flair
-#define GAME_VERSION "v0.1"
+#define GAME_VERSION "v0.2"
+#define NAMESIZE 51
 
 typedef enum { //This essentially is an enum for ease of understanding in how the goto_scene works.
     SceneStartMenu,
@@ -15,6 +16,22 @@ typedef enum { //This essentially is an enum for ease of understanding in how th
     SceneEnding,
     SceneError,
 } GameState;
+
+typedef enum
+{
+  Entered,
+  NotEntered,
+  Mandatory,
+  Blocked,
+  WasEntered,
+  Wasmandatory,
+} RaceEligibilityStatus;
+
+typedef enum
+{
+    IsCharacter,
+    IsInteger,
+} IsWhat;
 
 // When pulling or pushing data you should use this so it's easier to read, rather than numbers which can work but may me illegible.
 typedef enum
@@ -59,13 +76,23 @@ typedef enum
     IntInvalidExceededLimit,
     IntInvalidOther,
     IntSet,
+    IntEOF,
 
-}InputValidity;
+}IntegerCheck;
+
+typedef enum
+{
+    CharValid,
+    CharTruncatedAndEmpty,
+    CharTruncated,
+    CharEmpty,
+    CharEOF,
+}CharacterCheck;
 
 typedef struct
  {
     // Name of racer racer
-    char name[50];
+    char name[NAMESIZE];
 
     int current_energy;
     int max_energy;
@@ -98,12 +125,11 @@ typedef struct
 
     int popularity;
     int fans;
-    int display_fans;
 } Racer;
 
 typedef struct
  {
-    char name[50];
+    char name[NAMESIZE];
 
     int cash;
     int debt;
@@ -136,7 +162,9 @@ typedef struct {
     int fan_requirement;
     int fan_reward;
     int race_requirement; //Used to lookup if player has won a different race so 2 will go to the 2nd race in the special racelist
-    char name[50];
+    char name[NAMESIZE];
+    int scheduled_turn;   // turn it happens in (so we know where to place it)
+    int entered;          // If player is in the race (Entered, Not Entered, Mandatory, Blocked, Was Entered, Was mandatory)
 } TrackMetaData; // Lighter data that all a player needs to see
 
 typedef struct {
@@ -174,8 +202,9 @@ typedef struct {
 
 typedef struct {
     int choice;
-    char* name[50];
+    char name[NAMESIZE];
     int confirm;
+    int type;
     int status;
 } MenuInputs;
 
@@ -183,9 +212,8 @@ typedef struct {
 Racer trainee;
 Trainer trainer;
 Date date;
-Racer rival[50];
+Racer rival[NAMESIZE];
 RaceRacerData racer[20];
-TrackMapData trackmapdata;
 TrackMetaData trackmetadata[30];
 int rain_chance;
 } GameData; //All data that needs to be funneled out of the game.
@@ -208,7 +236,7 @@ void update_trainer_name(Trainer *trainer, char* input);
 
 void reset_inputs(MenuInputs *inputs);
 int input_integer(int min, int max, int *input);
-//int input_character(*input);
+int input_character(char *input);
 void generic_err_msg(int min, int max, int *status);
 
 #endif
