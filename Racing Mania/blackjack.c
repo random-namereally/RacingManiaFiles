@@ -75,11 +75,11 @@ void make_player_choice(BJscore *score){
 void make_dealer_choice(BJscore *score){
     while(score->dealertotal < 17){
         roll_dealer_dice(&score->dealertotal);
-        if(score->playertotal == 21){
+        if(score->dealertotal == 21){
                 printf("\nDealer has won \n");
                 break;
         }
-        if(score->playertotal > 21){
+        if(score->dealertotal > 21){
                 printf("\nDealer has lost \n");
                 break;
         }
