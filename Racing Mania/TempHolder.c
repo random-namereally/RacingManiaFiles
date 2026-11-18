@@ -1,4 +1,7 @@
 #include "GameHeaders.h"
+GameData gamedata; //Do not include in template
+
+#include "GameHeaders.h"
 
 // Defines corresponding name for inputs available for the userq
 typedef enum
@@ -10,7 +13,7 @@ typedef enum
 //Declaration of single file functions
 static void display_menu (int min, int max);
 static void get_input(int min, int max, MenuInputs *input);
-static void execute (int *choice);
+static int execute (int *choice, GameData *gamedata);
 static void err_msg(int min, int max, int *status);
 
 int main_example_menu()
@@ -28,12 +31,10 @@ int main_example_menu()
 
     //Input Validation and Execution
     get_input(min, max, &input);
-    execute(&input.choice);
+    return execute(&input.choice, &gamedata);
 
-    //Player must be out of the menu by then.
-
-    input.choice = Error;
-    execute(&input.choice);
+    //Out of bounds catcher
+    return SceneError;
 }
 
 // Displays example menu
@@ -67,11 +68,11 @@ static void get_input(int min, int max, MenuInputs *input)
 }
 
 // Executes validated choice
-static void execute (int *choice)
+static int execute (int *choice, GameData *gamedata)
 {
     switch (*choice)
     {
-        case TEMP:                                     break;
+        case TEMP:  /* return Temp */
         case Error: printf("\n\n[Error: End of menu. Exiting program]"); exit(1);
         default: printf("\n\n[Error: No code to execute. Check execute() or min and max?]");break;
     }

@@ -12,6 +12,7 @@ typedef enum { //This essentially is an enum for ease of understanding in how th
     SceneDebug,
     SceneAction_hub,
     SceneEnding,
+    SceneError,
 } GameState;
 
 // When pulling or pushing data you should use this so it's easier to read, rather than numbers which can work but may me illegible.
@@ -203,8 +204,10 @@ void update_racer_name(Racer *racer, char* input); //update_racer_name(&racer, i
 void update_trainer_name(Trainer *trainer, char* input);
 
 
+
 void reset_inputs(MenuInputs *inputs);
 int input_integer(int min, int max, int *input);
+//int input_character(*input);
 void generic_err_msg(int min, int max, int *status);
 
 #endif

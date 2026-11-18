@@ -15,9 +15,10 @@ int main ()
     case SceneLoadCareer: current_scene = main_load_career_menu(&gamedata); break;
     case SceneViewLeaderboard: current_scene = main_leaderboard_menu(&gamedata); break;
     case SceneDebug: current_scene = main_debug_menu(&gamedata); break;
+    case SceneError: exit(80085); break;
     //case SceneAction_hub: current_scene = action_hub_menu(&gamedata); break;
     //case SceneEnding: current_scene = ending_screen(&gamedata);break;
-    default: current_scene = SceneStartMenu; break;
+    default: exit(80085); break;
     }
   }
 

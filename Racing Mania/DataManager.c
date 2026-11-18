@@ -160,7 +160,7 @@ int input_integer(int min, int max, int *input)
     // Clear input
     int i;
     int limit = 0;
-    while ((i = getchar()) != '\n' && i != -1)
+    while ((i = getchar()) != '\n' && i != -1);
 
     // Classifies inputs
     if (pass == 0||pass == -1) return IntInvalidNotInteger;
@@ -169,6 +169,21 @@ int input_integer(int min, int max, int *input)
 
     return IntValid;
 }
+
+/*int input_character(char input)
+{
+    fgets(*input, 50, stdin);
+
+    // Clear input
+    int i;
+    while ((i = getchar()) != '\n' && i != -1);
+
+    // Classifies inputs (Actually all inputs are valid but we will give warnings)
+    if (strlen(*input)==0) {strcpy(*input, "Great Taste Kopik O"); return IntInvalidTooLow;}
+    if (strlen(*input)>50)  return IntInvalidToohigh
+
+    return IntValid;
+}*/
 
 void reset_inputs(MenuInputs *inputs)
 {

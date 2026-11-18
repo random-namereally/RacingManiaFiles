@@ -16,7 +16,7 @@ static void display_menu (int min, int max, int is_trainer_named, int is_trainee
 static void get_input(int min, int max, int is_trainer_named, int is_trainee_named, MenuInputs *input);
 static int execute (int *choice, GameData *gamedata);
 static void err_msg(int min, int max, int *status);
-void name_trainee();
+//void name_trainee();
 void name_trainer();
 
 int main_start_career_menu(GameData *gamedata)
@@ -35,6 +35,9 @@ int main_start_career_menu(GameData *gamedata)
     //Input Validation and Execution
     get_input(min, max, is_trainer_named, is_trainee_named, &input);
     return execute(&input.choice, gamedata);
+
+    //Out of bounds catcher
+    return SceneError;
 }
 
 // Displays example menu
@@ -48,11 +51,11 @@ static void display_menu(int min, int max, int istrainernamed, int istraineename
 
     printf("==================================================\n");
 
-    printf("1. Choose trainee name\n");
+    printf("1. Choose trainee name"); if(istraineenamed==1) {printf(" [done]");}
 
-    printf("2. Choose trainer name\n");
+    printf("\n2. Choose trainer name"); if(istrainernamed==1) {printf(" [done]");}
 
-    printf("3. Go back to main menu\n");
+    printf("\n3. Go back to main menu\n");
 
     printf("Enter selection (%d-%d): ", min, max);
 
@@ -76,7 +79,7 @@ static int execute (int *choice, GameData *gamedata)
 {
     switch (*choice)
     {
-        case NameTrainee:    name_trainee(); return SceneStartCareer;                                       break;
+        case NameTrainee:    //name_trainee(); return SceneStartCareer;                                       break;
         case NameTrainer:    name_trainer(); return SceneStartCareer;                                      break;
         case StartMenu:      return SceneStartMenu;                                     break;
         case Error: printf("\n\n[Error: End of menu. Exiting program]"); exit(1);
@@ -97,11 +100,17 @@ static void err_msg(int min, int max, int *status)
     while (getchar() != '\n');
 }
 
-void name_trainee()
-{
+// void name_trainee(char input, int *istraineenamed)
+//{
+    //while (input.confirm==0){
+    //input_character(*input);
+    //confirm_character(*input);
     //update_trainee_name(Racer racer, char *input)
+    //}
 
-}
+    //if(input.confirm==1) istraineenamed=1;
+
+//}
 
 void name_trainer()
 {

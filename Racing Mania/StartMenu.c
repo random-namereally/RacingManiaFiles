@@ -37,6 +37,9 @@ int main_start_menu(GameData *gamedata)
     //Input Validation and Execution
     get_input(min, max, &input);
     return execute(&input.choice, gamedata);
+
+    // Out of bounds catcher
+    return SceneError;
 }
 
 // Displays example menu

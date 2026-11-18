@@ -19,6 +19,7 @@ Deeper explanations can be inside the header itself. Thank you!
     #include <time.h>
     #include <math.h>
     #include <ctype.h>
+    //#include <bool.h>
 
 
 
