@@ -4,6 +4,8 @@
 #include<string.h>
 #include"DataManager.h"
 
+#define NAMESIZE 51
+
 
 // Initializes all values needed for game startup (WIP)
 void initialize_game(GameData *gamedata)
@@ -126,6 +128,7 @@ void update_racer_stat(Racer *racer, Pass stat_type, int modifier)
 }
 
 void update_trainer_stat(Trainer *trainer, Pass stat_type, int modifier)
+// update_trainer_stat(&trainer, NumCash, +1)
 {
     switch (stat_type)
     {
@@ -170,20 +173,45 @@ int input_integer(int min, int max, int *input)
     return IntValid;
 }
 
-/*int input_character(char input)
+/*
+
+int input_character(char *input)
 {
-    fgets(*input, 50, stdin);
+    // NAMESIZE is a DEFINED at 51
+char* temp[100];
 
-    // Clear input
-    int i;
-    while ((i = getchar()) != '\n' && i != -1);
+    fgets(temp, 100, stdin);
 
-    // Classifies inputs (Actually all inputs are valid but we will give warnings)
-    if (strlen(*input)==0) {strcpy(*input, "Great Taste Kopik O"); return IntInvalidTooLow;}
-    if (strlen(*input)>50)  return IntInvalidToohigh
+    // Adjusts input
+        while(1)
+        {
+            if (temp[0]==' ')
+            {
+                for(int j=0; j<NAMESIZE-1; j++)
 
-    return IntValid;
-}*/
+                {
+                    if (temp[j]=='\0') {j=9999; break;}
+                    temp[j] = temp[j+1];
+                }
+            }
+            else break;
+        }
+
+// Classifies inputs (Actually all inputs are valid but we will give warnings)
+   
+if (strlen(temp)==0) {strcpy(input, "Great Taste Kopik O"); return IntInvalidTooLow;}
+
+ if (strchr(temp, '\n')==0)  {
+temp[NAMESIZE-1] = '\0';
+int c; while ((c = getchar()) != '\n' && c != EOF);
+strncpy{input, temp, NAMESIZE};
+return IntInvalidTooHigh;}
+else {temp[strcspn(temp, "\n")] = '\0';}
+ 
+strncpy(input, temp, NAMESIZE);
+    return IntValid;
+
+*/
 
 void reset_inputs(MenuInputs *inputs)
 {

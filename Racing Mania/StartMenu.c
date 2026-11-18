@@ -25,7 +25,7 @@ static void err_msg(int min, int max, int *status);
 int main_start_menu(GameData *gamedata)
 {
     //Initializes variables of the menu
-    int min = 1, max = 5;
+    int min = 1, max = 6;
 
     //Initializes variables used for input validation
     MenuInputs input;
@@ -94,7 +94,7 @@ static int execute (int *choice, GameData *gamedata)
         case ViewLeaderboard:   return SceneViewLeaderboard;
         case Debug:             return SceneDebug;
         case Blackjack:         return SceneBlackjack;
-        case ExitGame:      printf("\033[2J\033[HThanks for playing!\n"); exit(0);               break;
+        case ExitGame:      printf("\033[2J\033[HThanks for playing!\n"); getchar(); exit(0);               break;
         case Error: printf("\n\n[Error: End of menu. Exiting program]"); exit(1);
         default: printf("\n\n[Error: No code to execute. Check execute() or min and max?]"); break;
     }
