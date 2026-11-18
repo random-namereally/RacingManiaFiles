@@ -19,7 +19,7 @@ int main ()
     case SceneError: exit(80085); break;
     //case SceneAction_hub: current_scene = action_hub_menu(&gamedata); break;
     //case SceneEnding: current_scene = ending_screen(&gamedata);break;
-    default: exit(80085); break;
+    default: exit(1); break;
     }
   }
 

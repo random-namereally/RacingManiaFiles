@@ -59,7 +59,14 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="TempHolder.h" />
+		<Unit filename="blackjack.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="blackjack.h" />
 		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tempblackjackmain.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Extensions>
