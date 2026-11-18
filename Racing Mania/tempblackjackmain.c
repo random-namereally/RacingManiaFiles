@@ -1,6 +1,8 @@
 #include "blackjack.h"
+#include "GameHeaders.h"
 
-int main_blackjack(Gamedata *gamedata){
+
+int main_blackjack(GameData *gamedata){
     rand_seed();
     BJscore score = initialize_bj_score();
     roll_dealer_dice(&score.dealertotal);

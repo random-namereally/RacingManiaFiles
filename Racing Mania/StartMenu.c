@@ -11,6 +11,7 @@ typedef enum
     LoadCareer,
     ViewLeaderboard,
     Debug,
+    Blackjack,
     ExitGame,
     Error,
 } CHOICES;
@@ -61,6 +62,8 @@ static void display_menu(int min, int max)
 
     printf("4. Debug and options\n");
 
+    printf("5. Blackjack\n");
+
     printf("5. Quit Game                                   %s\n", GAME_VERSION);
 
     printf("--------------------------------------------------\n");
@@ -90,6 +93,7 @@ static int execute (int *choice, GameData *gamedata)
         case LoadCareer:        return SceneLoadCareer;
         case ViewLeaderboard:   return SceneViewLeaderboard;
         case Debug:             return SceneDebug;
+        case Blackjack:         return SceneBlackjack;
         case ExitGame:      printf("\033[2J\033[HThanks for playing!\n"); exit(0);               break;
         case Error: printf("\n\n[Error: End of menu. Exiting program]"); exit(1);
         default: printf("\n\n[Error: No code to execute. Check execute() or min and max?]"); break;

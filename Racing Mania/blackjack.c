@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "blackjack.h"
+#include "GameHeaders.h"
 
 void roll_player_dice(int *playertotal){
     roller player = {rand() % DECK_SIZE + 1};

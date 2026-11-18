@@ -10,6 +10,7 @@ typedef enum { //This essentially is an enum for ease of understanding in how th
     SceneLoadCareer,
     SceneViewLeaderboard,
     SceneDebug,
+    SceneBlackjack,
     SceneAction_hub,
     SceneEnding,
     SceneError,

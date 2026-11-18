@@ -31,5 +31,6 @@ Deeper explanations can be inside the header itself. Thank you!
     #include "TempHolder.h"         // Holding functions with no functionality or native file just yet.
     #include "StartCareer.h"        // For specifications of new career
     #include "Debug.h"
+    #include "blackjack.h"
 
 #endif

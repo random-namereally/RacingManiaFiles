@@ -1,6 +1,8 @@
 #ifndef BLACKJACK_H
 #define BLACKJACK_H
 
+#include "GameHeaders.h"
+
 #define DECK_SIZE 11
 
 typedef struct{
@@ -11,6 +13,9 @@ typedef struct{
     int playertotal;
     int dealertotal;
     }BJscore;
+
+//Blackjack main in Blackjackmain.c
+int main_blackjack(GameData *gamedata);
 
 //for rolling the dealer's dice
 void roll_dealer_dice(int *dealertotal);
