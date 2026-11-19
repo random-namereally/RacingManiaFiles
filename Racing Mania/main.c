@@ -16,8 +16,8 @@ int main ()
     case SceneViewLeaderboard: current_scene = main_leaderboard_menu(&gamedata); break;
     case SceneDebug: current_scene = main_debug_menu(&gamedata); break;
     case SceneBlackjack: current_scene = main_blackjack(&gamedata); break;
-    case SceneError: exit(80085); break;
-    //case SceneAction_hub: current_scene = action_hub_menu(&gamedata); break;
+    case SceneError: exit(1); break;
+    case SceneActionHub: current_scene = main_action_hub_menu(&gamedata); break;
     //case SceneEnding: current_scene = ending_screen(&gamedata);break;
     default: exit(1); break;
     }

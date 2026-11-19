@@ -19,18 +19,25 @@ Deeper explanations can be inside the header itself. Thank you!
     #include <time.h>
     #include <math.h>
     #include <ctype.h>
-    //#include <bool.h>
+    #include <stdbool.h>
 
 
 
 // User-defined headers
 //  #include "header_name.h"     // Hello this is a brief of what header encapsulates
 
-    #include "DataManager.h"        // Central Hub for all game data. Includes Data validation.
-    #include "StartMenu.h"          // Starting menu of the game
-    #include "TempHolder.h"         // Holding functions with no functionality or native file just yet.
-    #include "StartCareer.h"        // For specifications of new career
-    #include "Debug.h"
-    #include "blackjack.h"
+    //  Developer only headers
+        #include "DataManager.h"        // Central Hub for all game data. Includes Data validation.
+        #include "TempHolder.h"         // Holding functions with no functionality or native file just yet.
+        #include "Debug.h"
+
+    // Pre/Post-game headers
+        #include "StartMenu.h"          // Starting menu of the game
+        #include "StartCareer.h"        // For specifications of new career
+
+
+    //Mid-game headers
+        #include "blackjack.h"
+        #include "ActionHub.h"
 
 #endif

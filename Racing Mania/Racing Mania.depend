@@ -53,11 +53,12 @@
 1795088576 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\datamanager.c
 	"GameHeaders.h"
 
-1795088593 c:\users\youop\documents\github\racingmaniafiles\racing mania\datamanager.h
+1795095968 c:\users\youop\documents\github\racingmaniafiles\racing mania\datamanager.h
 
-1794978413 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\actionhub.c
+1795097432 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\actionhub.c
+	"GameHeaders.h"
 
-1794984549 c:\users\youop\documents\github\racingmaniafiles\racing mania\gameheaders.h
+1795097373 c:\users\youop\documents\github\racingmaniafiles\racing mania\gameheaders.h
 	"header_name.h"
 	<stdio.h>
 	<stdlib.h>
@@ -65,16 +66,18 @@
 	<time.h>
 	<math.h>
 	<ctype.h>
+	<stdbool.h>
 	"DataManager.h"
-	"StartMenu.h"
 	"TempHolder.h"
-	"StartCareer.h"
 	"Debug.h"
+	"StartMenu.h"
+	"StartCareer.h"
 	"blackjack.h"
+	"ActionHub.h"
 
 1794368420 c:\users\youop\documents\github\racingmaniafiles\racing mania\mainmenu.h
 
-1794675907 c:\users\youop\documents\github\racingmaniafiles\racing mania\actionhub.h
+1795097720 c:\users\youop\documents\github\racingmaniafiles\racing mania\actionhub.h
 
 1794368420 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\mainmenu.c
 	"GameHeaders.h"
@@ -91,7 +94,7 @@
 1795092536 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\tempholder.c
 	"GameHeaders.h"
 
-1795089331 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\startcareer.c
+1795097172 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\startcareer.c
 	"GameHeaders.h"
 
 1794675907 c:\users\youop\documents\github\racingmaniafiles\racing mania\debug.h
