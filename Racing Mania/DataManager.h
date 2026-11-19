@@ -93,6 +93,7 @@ typedef struct
  {
     // Name of racer racer
     char name[NAMESIZE];
+    int is_trainee_named;
 
     int current_energy;
     int max_energy;
@@ -130,6 +131,7 @@ typedef struct
 typedef struct
  {
     char name[NAMESIZE];
+    int is_trainer_named;
 
     int cash;
     int debt;
@@ -212,7 +214,7 @@ typedef struct {
 Racer trainee;
 Trainer trainer;
 Date date;
-Racer rival[NAMESIZE];
+Racer rival[50];
 RaceRacerData racer[20];
 TrackMetaData trackmetadata[30];
 int rain_chance;
@@ -229,8 +231,8 @@ void increment_turn(Date *date);
 
 void update_racer_stat(Racer *racer, Pass stat_type, int modifier); //update_racer_stat(&racer, stat_type, modifier);
 void update_trainer_stat(Trainer *trainer, Pass stat_type, int modifier); //update_trainer_stat(&trainer, stat_type, modifier);
-void update_racer_name(Racer *racer, char* input); //update_racer_name(&racer, input);
-void update_trainer_name(Trainer *trainer, char* input);
+void update_racer_name(Racer *racer, const char* input); //update_racer_name(&racer, input);
+void update_trainer_name(Trainer *trainer, const char* input);
 
 
 

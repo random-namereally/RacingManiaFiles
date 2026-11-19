@@ -1,22 +1,20 @@
 #include "GameHeaders.h"
-GameData gamedata; //Do not include in template
-
-#include "GameHeaders.h"
 
 // Defines corresponding name for inputs available for the userq
 typedef enum
 {
     TEMP,
+    choice1,
     Error,
 } CHOICES;
 
 //Declaration of single file functions
 static void display_menu (int min, int max);
 static void get_input(int min, int max, MenuInputs *input);
-static int execute (int *choice, GameData *gamedata);
-static void err_msg(int min, int max, int *status);
+static int execute (int choice, GameData *gamedata);
+static void err_msg(int min, int max, int status);
 
-int main_example_menu()
+int main_example_menu(GameData *gamedata)
 {
     //Initializes variables of the menu
     int min = 1, max = 5;
@@ -31,7 +29,7 @@ int main_example_menu()
 
     //Input Validation and Execution
     get_input(min, max, &input);
-    return execute(&input.choice, &gamedata);
+    return execute(input.choice, gamedata);
 
     //Out of bounds catcher
     return SceneError;
@@ -60,35 +58,43 @@ static void get_input(int min, int max, MenuInputs *input)
     do
     {
         input->status = input_integer(min , max,&input->choice);
-        err_msg(min, max, &input->status);
+        err_msg(min, max, input->status);
         printf("\033[2J\033[H");
         display_menu(min, max);
+        if (input->status == IntEOF) return;
     }
     while (input->status != IntValid);
 }
 
 // Executes validated choice
-static int execute (int *choice, GameData *gamedata)
+static int execute (int choice, GameData *gamedata)
 {
-    switch (*choice)
+    switch (choice)
     {
         case TEMP:  /* return Temp */
-        case Error: printf("\n\n[Error: End of menu. Exiting program]"); exit(1);
-        default: printf("\n\n[Error: No code to execute. Check execute() or min and max?]");break;
+        case Error: printf("\n\n[Error: End of menu. Exiting program]");                        return SceneError;
+        default: printf("\n\n[Error: No code to execute. Check execute() or min and max?]");    return SceneError;
     }
 }
 
 //Prints message based on error number given
-static void err_msg(int min, int max, int *status)
+static void err_msg(int min, int max, int status)
 {
 
-    if (*status==IntValid) {return;}
+
+    if (status==IntValid) {return;}
     printf("\033[A");
-    if (*status==IntInvalidTooHigh) {printf("[ERROR: Input must be lower than %d!]", max);}
-    if (*status==IntInvalidTooLow) {printf("[ERROR: Input must be higher than %d!]", min);}
-    if (*status==IntInvalidNotInteger) {printf("[ERROR: Input must be a whole number!]");}
-    if (*status==IntInvalidExceededLimit) {printf("[ERROR: Input crashed input buffer!]");}
-    while (getchar() != '\n');
+    switch (status)
+    {
+    case IntInvalidTooHigh:       printf("[ERROR: Input must be lower than %d!]", max);  break;
+    case IntInvalidTooLow:        printf("[ERROR: Input must be higher than %d!]", min); break;
+    case IntInvalidNotInteger:    printf("[ERROR: Input must be a whole number!]");      break;
+    case IntEOF:                  printf("[ERROR: End of input.]");                      break;
+    default:                      printf("[ERROR: Unknown input.]");                     break;
+    }
+
+    fflush(stdout);
+    int c; while ((c = getchar()) != '\n' && c != EOF);
 }
 
 

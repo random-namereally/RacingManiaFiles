@@ -8,7 +8,8 @@ void initialize_game(GameData *gamedata)
 {
     gamedata->trainee = (Racer)
     {
-        .name = "Magnolia Inam O",
+        .name = "Error: No name",
+        .is_trainee_named = 0,
 
         .current_energy = 100,
         .max_energy = 100,
@@ -45,6 +46,8 @@ void initialize_game(GameData *gamedata)
 
     gamedata->trainer = (Trainer)
     {
+        .name = "Error: No name",
+        .is_trainer_named = 0,
         .cash = 0,
         .debt = 0,
         .debt_limit = 0,
@@ -140,14 +143,16 @@ void update_trainer_stat(Trainer *trainer, Pass stat_type, int modifier)
     }
 }
 
-void update_racer_name(Racer *racer, char *input)
+void update_racer_name(Racer *racer, const char *input)
 {
-    strcpy(racer->name, input);
+    strncpy(racer->name, input, sizeof(racer->name) - 1);
+    racer->name[sizeof(racer->name) - 1] = '\0';
 }
 
-void update_trainer_name(Trainer *trainer, char *input)
+void update_trainer_name(Trainer *trainer, const char *input)
 {
-    strcpy(trainer->name, input);
+    strncpy(trainer->name, input, sizeof(trainer->name) - 1);
+    trainer->name[sizeof(trainer->name) - 1] = '\0';
 }
 
 
@@ -184,7 +189,7 @@ int input_character(char *input)
     if(strchr(temp, '\n')==0)
     {
         int c; while ((c = getchar()) != '\n' && c != EOF); // Flushes stdin of uncaptured data
-        truncated++;
+        truncated++; // This like sets truncated to true
     }
 
 
@@ -208,7 +213,7 @@ int input_character(char *input)
         input[strlen("Great Taste Kopik O")] = '\0'; */
 
     // d. if string is empty place warning
-    if (strlen(temp)==0) empty++;
+    if (strlen(temp)==0) empty++; //Sets empty to true
 
 
     strncpy(input, temp, NAMESIZE); // Places temp into input after cleaning and classification
