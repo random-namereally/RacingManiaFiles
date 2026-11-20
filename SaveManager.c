@@ -3,13 +3,13 @@
 #include <limits.h>
 #include <errno.h>
 
-// ---------------------------------------------------------------
-// FIELD LISTS
+
+// FIELD LISTS- draft to be updated 
 // To save a new value, add ONE line here. It is then written,
 // read and range-checked automatically.
 // Format: X("file_key", struct_path, min, max)
 // Ranges are guesses: adjust them to match your game balance.
-// ---------------------------------------------------------------
+
 #define INT_FIELDS(X) \
     X("trainee_named",     trainee.is_trainee_named, 0, 1) \
     X("current_energy",    trainee.current_energy,   0, 10000) \
@@ -51,9 +51,9 @@
     X("guts_mult",     trainee.guts_multiplier,    0.0, 100.0) \
     X("wit_mult",      trainee.wit_multiplier,     0.0, 100.0)
 
-// ---------------------------------------------------------------
+
 // HELPERS
-// ---------------------------------------------------------------
+
 static int make_path(int slot, char *buf, size_t size, const char *ext)
 {
     if (slot < 1 || slot > SAVE_SLOTS) return 0;
@@ -116,9 +116,9 @@ static int apply_key(GameData *g, const char *key, const char *val)
     return -1;
 }
 
-// ---------------------------------------------------------------
+
 // PUBLIC FUNCTIONS
-// ---------------------------------------------------------------
+
 int save_exists(int slot)
 {
     char path[32];
