@@ -4,14 +4,6 @@
 /*
 SaveManager: plain-text save files (save1.txt, save2.txt, ...).
 
-Format is one "key=value" per line, starting with "version=1".
-Unknown keys are ignored and missing keys keep their current value,
-so adding a field to GameData later will not break old saves.
-
-NOTE: this header uses GameData, so include it AFTER DataManager.h
-(GameHeaders.h already does this for the other headers).
-*/
-
 #define SAVE_SLOTS   3
 #define SAVE_VERSION 1
 
