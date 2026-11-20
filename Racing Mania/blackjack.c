@@ -55,12 +55,10 @@ void make_player_choice(BJscore *score){
         roll_player_dice(&score->playertotal);
         if(score->playertotal == 21){
                 playerchoice = '2';
-                printf("\nPlayer has won \n");
                 break;
         }
         if(score->playertotal > 21){
                 playerchoice = '2';
-                printf("\nPlayer has lost \n");
                 break;
         }
         print_player_points(*score);
@@ -76,18 +74,24 @@ void make_dealer_choice(BJscore *score){
     while(score->dealertotal < 17){
         roll_dealer_dice(&score->dealertotal);
         if(score->dealertotal == 21){
-                printf("\nDealer has won \n");
-                return;
+                break;
         }
         if(score->dealertotal > 21){
-                printf("\nDealer has lost \n");
-                return;
+                break;
         }
     }
 }
 
 void compare_player_dealer_total(BJscore *score){
-    if(score->playertotal > score->dealertotal){
+    if(score->playertotal > 21){
+        printf("The Player has lost \n");
+    }else if(score->playertotal == 21){
+        printf("The Player has won");
+    }else if(score->dealertotal > 21){
+        printf("The Dealer has lost");
+    }else if(score->dealertotal == 21){
+        printf("The Dealer has won");
+    }else if(score->playertotal > score->dealertotal){
         printf("the Player has won\n");
     }else if(score->playertotal == score->dealertotal){
         printf("The match ends in a draw\n");
