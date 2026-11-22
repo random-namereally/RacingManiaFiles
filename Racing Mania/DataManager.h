@@ -15,6 +15,8 @@ typedef enum { //This essentially is an enum for ease of understanding in how th
     SceneActionHub,
     SceneEnding,
     SceneError,
+    SceneExitGame,
+    SceneTemplate,
 } GameState;
 
 typedef enum
@@ -67,27 +69,38 @@ typedef enum
     NumCreditScore,
 }Pass;
 
-typedef enum
-{
-    IntValid,
-    IntInvalidNotInteger,
-    IntInvalidTooLow,
-    IntInvalidTooHigh,
-    IntInvalidExceededLimit,
-    IntInvalidOther,
-    IntSet,
-    IntEOF,
+// Start of input structs and enums
 
-}IntegerCheck;
+    // Status of  input
+    typedef enum
+    {
+        IntValid = 10,
+        IntInvalidNotInteger = 11,
+        IntInvalidTooLow = 12,
+        IntInvalidTooHigh = 13,
+        IntEOF = 19,
+        CharValid = 20,
+        CharTruncatedAndEmpty = 21,
+        CharTruncated = 22,
+        CharEmpty = 23,
+        CharEOF = 29,
+    }InputStatus;
 
-typedef enum
-{
-    CharValid,
-    CharTruncatedAndEmpty,
-    CharTruncated,
-    CharEmpty,
-    CharEOF,
-}CharacterCheck;
+    typedef enum
+    {
+        InputInt = 1,
+        InputChar = 2,
+    }InputType;
+
+    typedef struct {
+        int choice;
+        char name[NAMESIZE];
+        int confirm;
+        InputType type;
+        InputStatus status;
+    } MenuInputs;
+
+// End of input structs and enums
 
 typedef struct
  {
@@ -148,67 +161,71 @@ typedef struct {
     int year;
 } Date;
 
-typedef struct {
-    char elevation[1000]; // Note: Each index is 2.5 meters
-    char curve[1000]; // Curve relative to previous meter, local curve.
-    char left_width[1000]; // how wide from the center to the left each part of a track is
-    char right_width[1000]; // how wide from the center to the right each part of a track is
-} TrackMapData; //VERY HEAVY only one must be loaded at a time. 100 of these is 3mb
+// Start of Track and race data structs
 
-typedef struct {
-    int length;
-    int ground;
-    int prestige; //Open<G3<G2<G1 from lowest to highest
-    int stamina_check;//1-3 from bad to meh to fit
-    int power_check;//1-3 from bad to meh to fit
-    int fan_requirement;
-    int fan_reward;
-    int race_requirement; //Used to lookup if player has won a different race so 2 will go to the 2nd race in the special racelist
-    char name[NAMESIZE];
-    int scheduled_turn;   // turn it happens in (so we know where to place it)
-    int entered;          // If player is in the race (Entered, Not Entered, Mandatory, Blocked, Was Entered, Was mandatory)
-} TrackMetaData; // Lighter data that all a player needs to see
+    typedef struct {
+        char elevation[1000]; // Note: Each index is 2.5 meters
+        char curve[1000]; // Curve relative to previous meter, local curve.
+        char left_width[1000]; // how wide from the center to the left each part of a track is
+        char right_width[1000]; // how wide from the center to the right each part of a track is
+    } TrackMapData; //VERY HEAVY only one must be loaded at a time. 100 of these is 3mb
 
-typedef struct {
+    typedef struct {
+        int length;
+        int ground;
+        int prestige; //Open<G3<G2<G1 from lowest to highest
+        int stamina_check;//1-3 from bad to meh to fit
+        int power_check;//1-3 from bad to meh to fit
+        int fan_requirement;
+        int fan_reward;
+        int race_requirement; //Used to lookup if player has won a different race so 2 will go to the 2nd race in the special racelist
+        char name[NAMESIZE];
+        int scheduled_turn;   // turn it happens in (so we know where to place it)
+        int entered;          // If player is in the race (Entered, Not Entered, Mandatory, Blocked, Was Entered, Was mandatory)
+    } TrackMetaData; // Lighter data that all a player needs to see
 
-    float meters_ran;
-    float meters_left;
-    float progress_percent;
+    typedef struct {
 
-    float left_distance;
-    float dright_distance;
+        float meters_ran;
+        float meters_left;
+        float progress_percent;
 
-    float current_angle;
-    float max_angle_change;
+        float left_distance;
+        float dright_distance;
 
-    float current_velocity;
-    float max_velocity;
+        float current_angle;
+        float max_angle_change;
 
-    float current_stamina;
-    float max_stamina;
+        float current_velocity;
+        float max_velocity;
 
-    float current_acceleration;
-    float max_acc_change;
+        float current_stamina;
+        float max_stamina;
 
-    float early_stamina_cost;
-    float early_power_boost;
+        float current_acceleration;
+        float max_acc_change;
 
-    float spurt_penalty_reduction; //Reduces Exhaustion penalty if in spurt
-    float spurt_velocity_boost; //scales with speed
-    float spurt_max_velocity_boost; //scales with speed
-    float spurt_max_acc_boost; //scales with speed
+        float early_stamina_cost;
+        float early_power_boost;
 
-    float challenge_velocity_boost;
-    float challenge_acc_boost;
-} RaceRacerData;
+        float spurt_penalty_reduction; //Reduces Exhaustion penalty if in spurt
+        float spurt_velocity_boost; //scales with speed
+        float spurt_max_velocity_boost; //scales with speed
+        float spurt_max_acc_boost; //scales with speed
 
-typedef struct {
-    int choice;
-    char name[NAMESIZE];
-    int confirm;
-    int type;
-    int status;
-} MenuInputs;
+        float challenge_velocity_boost;
+        float challenge_acc_boost;
+    } RaceRacerData;
+
+    typedef struct {
+        RaceRacerData racer[20];
+        TrackMapData trackmapdata;
+        int condition;
+    } RaceSimData; //Local to Races only
+
+// End of track and race data structs
+
+// GAMEDATA an important struct holding all the most important data of the game
 
 typedef struct {
 Racer trainee;
@@ -220,25 +237,27 @@ TrackMetaData trackmetadata[30];
 int rain_chance;
 } GameData; //All data that needs to be funneled out of the game.
 
+// DIAGNOSTICS empty rn, probably holds diagnostic data, implement lest
+
 typedef struct {
-RaceRacerData racer[20];
-TrackMapData trackmapdata;
-int condition;
-} RaceSimData; //Local to Races only
 
-void initialize_game(GameData *gamedata);
-void increment_turn(Date *date);
+} Diagnostics;
 
+// Function declarations
+
+// Game functions
+void initialize_game(GameData *gamedata); // God-initialize struct for anything needed to be initialized at the start of the game
+void increment_turn(Date *date); // Increments turn by 1 and updates all date data
+
+// Stat updaters
 void update_racer_stat(Racer *racer, Pass stat_type, int modifier); //update_racer_stat(&racer, stat_type, modifier);
 void update_trainer_stat(Trainer *trainer, Pass stat_type, int modifier); //update_trainer_stat(&trainer, stat_type, modifier);
 void update_racer_name(Racer *racer, const char* input); //update_racer_name(&racer, input);
 void update_trainer_name(Trainer *trainer, const char* input);
 
-
-
+// Inpit handlers
 void reset_inputs(MenuInputs *inputs);
 int input_integer(int min, int max, int *input);
 int input_character(char *input);
-void generic_err_msg(int min, int max, int *status);
 
 #endif

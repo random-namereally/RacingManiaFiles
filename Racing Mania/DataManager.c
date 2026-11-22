@@ -6,7 +6,7 @@
 // Initializes all values needed for game startup (WIP)
 void initialize_game(GameData *gamedata)
 {
-    gamedata->trainee = (Racer)
+    gamedata->trainee = (Racer) // My hands bled without complex literals or whatever the tutorial said, this looks cleaner too
     {
         .name = "Error: No name",
         .is_trainee_named = 0,
@@ -71,13 +71,15 @@ void increment_turn(Date *date)
 
     int t = date->turn;
 
-    date->biweek = (t % 2) + 1;
+    date->biweek = ((t - 1) % 2) + 1;
 
-    date->month = ((t % 24) / 2) + 1;
+    date->month  = (((t - 1) % 24) / 2) + 1;
 
-    date->season = ((date->month - 1) / 3) + 1;
+    int m = date->month;
 
-    date->year = (t / 24) + 1;
+    date->season = (( m - 1) / 3) + 1;
+
+    date->year   = ((t - 1) / 24) + 1;
 }
 
 void update_racer_stat(Racer *racer, Pass stat_type, int modifier)
@@ -166,7 +168,8 @@ int input_integer(int min, int max, int *input)
     while ((i = getchar()) != '\n' && i != -1);
 
     // Classifies inputs
-    if (pass == 0||pass == -1) return IntInvalidNotInteger;
+    if (pass == EOF) return IntEOF;
+    if (pass == 0)   return IntInvalidNotInteger;
     if (*input < min) return IntInvalidTooLow;
     if (*input > max) return IntInvalidTooHigh;
 
@@ -180,7 +183,7 @@ int input_character(char *input)
     char temp[NAMESIZE]={0}; // Temporary holder of input
     int truncated = 0, empty = 0; // Classifies inputs for custom confirm handling
 
-    fgets(temp, sizeof(temp), stdin); // Gets input from user
+    if (fgets(temp, sizeof(temp), stdin) == NULL) return CharEOF; // Gets input from user
 
     // 2. Alter input to standard. Ie no leading or trailing spaces
     // with a terminator at the very end of the string
@@ -205,7 +208,7 @@ int input_character(char *input)
     // c. Replaces first trailing space with terminator
 
         int i = strlen(temp)-1;
-        while (i>=0 && (isspace((unsigned char)temp[i])||(unsigned char)temp[i] == 0xA0))
+        while (i>=0 && (isspace((unsigned char)temp[i])||(unsigned char)temp[i] == 0xA0)) //So like emojis kills stuff with no unsigned char, I was thinking since Ascii is defnitely not complete so there must be more and this is like whatchacallit beyond that so i wondered how c handles it and yeaah it sucks
         {i--;} temp[i+1]='\0'; // Same shtick as earlier, removes trailing spaces
 
     // z. actually in the wrong function ignore for now.

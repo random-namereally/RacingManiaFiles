@@ -44,6 +44,20 @@
 		</Unit>
 		<Unit filename="Debug.h" />
 		<Unit filename="GameHeaders.h" />
+		<Unit filename="GenericFunctions.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="GenericFunctions.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="GenericTemplate.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="GenericTemplate.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="SharedDisplay.c">
 			<Option compilerVar="CC" />
 		</Unit>
