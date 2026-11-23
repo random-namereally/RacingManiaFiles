@@ -25,7 +25,7 @@ int main_example_menu(GameData *gamedata)
     display (min, max);
 
     //Input Validation and Execution
-    std_get_int(min, max, &input, display, std_err_msg);
+    std_get_int(min, max, &input, display, std_status_msg);
     return execute(input.choice, gamedata);
 }
 

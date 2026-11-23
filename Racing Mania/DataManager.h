@@ -63,6 +63,7 @@ typedef enum
     NumLongAffinity,
     NumPopularity,
     NumFans,
+    // Trainer stats
     NumCash,
     NumDebt,
     NumDebtLimit,
