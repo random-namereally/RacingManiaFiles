@@ -20,7 +20,7 @@ void clear_screen()
 }
 
 // Solana look at this function pointer... took me some tries... it's hard to understand
-int std_get_int(int min, int max, MenuInputs *input, void (*display)(int, int), void (*status_msg)(int, int, int))
+int std_get_int(int min, int max, MenuInputs *input,  GameData *gamedata, void (*display)(int, int, GameData *gamedata), void (*status_msg)(int, int, int))
 {
     while (1)
     {
@@ -36,7 +36,7 @@ int std_get_int(int min, int max, MenuInputs *input, void (*display)(int, int), 
 
         // Print error
         status_msg(min, max, input->status);
-        display(min, max);
+        display(min, max, gamedata);
     }
 
 

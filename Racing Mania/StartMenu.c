@@ -13,7 +13,7 @@ typedef enum
 } CHOICES;
 
 static int execute (int choice, GameData *gamedata);
-static void display(int min, int max);
+static void display(int min, int max, GameData *gamedata);
 
 int main_start_menu(GameData *gamedata)
 {
@@ -22,15 +22,15 @@ int main_start_menu(GameData *gamedata)
     reset_inputs(&input);
 
     clear_screen();
-    display(min, max);
+    display(min, max, gamedata);
 
-    int status = std_get_int(min, max, &input, display, std_status_msg);
+    int status = std_get_int(min, max, &input, gamedata, display, std_status_msg);
     if (status == IntEOF) return SceneError;
 
     return execute(input.choice, gamedata);
 }
 
-static void display(int min, int max)
+static void display(int min, int max, GameData *gamedata)
 {
     std_header("RACING MANIA");
 
