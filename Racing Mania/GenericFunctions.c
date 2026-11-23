@@ -81,6 +81,13 @@ void std_prompt(const char *prompt, int min, int max) {
 
 void std_overview(GameData *gamedata)
 {
+    printf("Energy: %d/%d                   Turn 1    Year 1\n", gamedata->trainee.current_energy, gamedata->trainee.max_energy);
+    printf("Mood: Happy                       Early Jan Winter\n\n");
+
+    printf("GOAL: (3 turns) Reach 100 speed\n");
+    printf("Spe: %d    Sta: %d    Pow: %d    Guts: %d   Wit: %d\n",
+           gamedata->trainee.speed, gamedata->trainee.stamina, gamedata->trainee.power, gamedata->trainee.guts, gamedata->trainee.wit);
+    printf("--------------------------------------------------\n");
 
 }
 

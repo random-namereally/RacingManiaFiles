@@ -42,6 +42,6 @@ void make_player_choice(BJscore *score);
 void make_dealer_choice(BJscore *score);
 
 //compares the totalscore of the dealer and player to decide winner
-void compare_player_dealer_total(BJscore *score);
+void compare_player_dealer_total(BJscore *score, GameData *gamedata);
 
 #endif

@@ -14,7 +14,7 @@ int main_blackjack(GameData *gamedata){
     make_dealer_choice(&score);
     print_player_points(score);
     print_dealer_points(score);
-    compare_player_dealer_total(&score);
+    compare_player_dealer_total(&score, gamedata);
     getchar();
     return SceneStartMenu;
 }

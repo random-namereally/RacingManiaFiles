@@ -82,26 +82,26 @@ void make_dealer_choice(BJscore *score){
     }
 }
 
-void compare_player_dealer_total(BJscore *score){
+void compare_player_dealer_total(BJscore *score, GameData *gamedata){
     if(score->playertotal > 21){
         printf("The Player has lost \n");
-        update_trainer_stat(&trainer, NumCash, -20);
+        update_trainer_stat(&gamedata->trainer, NumCash, -20);
     }else if(score->playertotal == 21){
         printf("The Player has won");
-        update_trainer_stat(&trainer, NumCash, +20);
+        update_trainer_stat(&gamedata->trainer, NumCash, +20);
     }else if(score->dealertotal > 21){
         printf("The Dealer has lost");
-        update_trainer_stat(&trainer, NumCash, +20);
+        update_trainer_stat(&gamedata->trainer, NumCash, +20);
     }else if(score->dealertotal == 21){
         printf("The Dealer has won");
-        update_trainer_stat(&trainer, NumCash, -20);
+        update_trainer_stat(&gamedata->trainer, NumCash, -20);
     }else if(score->playertotal > score->dealertotal){
         printf("the Player has won\n");
-        update_trainer_stat(&trainer, NumCash, +20);
+        update_trainer_stat(&gamedata->trainer, NumCash, +20);
     }else if(score->playertotal == score->dealertotal){
         printf("The match ends in a draw\n");
     }else{
         printf("The Dealer has won\n");
-        update_trainer_stat(&trainer, NumCash, -20);
+        update_trainer_stat(&gamedata->trainer, NumCash, -20);
 }
 }
