@@ -4,6 +4,9 @@
 #include "blackjack.h"
 #include "GameHeaders.h"
 
+#define PRIZE 20
+#define PENALTY -20
+
 void roll_player_dice(int *playertotal){
     roller player = {rand() % DECK_SIZE + 1};
     printf("You rolled: %d \n", player.roll);
@@ -85,23 +88,23 @@ void make_dealer_choice(BJscore *score){
 void compare_player_dealer_total(BJscore *score, GameData *gamedata){
     if(score->playertotal > 21){
         printf("The Player has lost \n");
-        update_trainer_stat(&gamedata->trainer, NumCash, -20);
+        update_trainer_stat(&gamedata->trainer, NumCash, PENALTY);
     }else if(score->playertotal == 21){
         printf("The Player has won");
-        update_trainer_stat(&gamedata->trainer, NumCash, +20);
+        update_trainer_stat(&gamedata->trainer, NumCash, PRIZE);
     }else if(score->dealertotal > 21){
         printf("The Dealer has lost");
-        update_trainer_stat(&gamedata->trainer, NumCash, +20);
+        update_trainer_stat(&gamedata->trainer, NumCash, PRIZE);
     }else if(score->dealertotal == 21){
         printf("The Dealer has won");
-        update_trainer_stat(&gamedata->trainer, NumCash, -20);
+        update_trainer_stat(&gamedata->trainer, NumCash, PENALTY);
     }else if(score->playertotal > score->dealertotal){
         printf("the Player has won\n");
-        update_trainer_stat(&gamedata->trainer, NumCash, +20);
+        update_trainer_stat(&gamedata->trainer, NumCash, PRIZE);
     }else if(score->playertotal == score->dealertotal){
         printf("The match ends in a draw\n");
     }else{
         printf("The Dealer has won\n");
-        update_trainer_stat(&gamedata->trainer, NumCash, -20);
+        update_trainer_stat(&gamedata->trainer, NumCash, PENALTY);
 }
 }

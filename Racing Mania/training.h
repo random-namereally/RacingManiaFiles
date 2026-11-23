@@ -2,6 +2,8 @@
 #ifndef TRAINING_H
 #define TRAINING_H
 
+//ARE THESE THINGS GONNA BE USED ELSEWHERE?
+
 //increases racer stats at the cost of energy and cash
 void train_racer(Racer *racer, Trainer *trainer, Pass stat_type);
 
