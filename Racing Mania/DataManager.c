@@ -1,8 +1,5 @@
 #include"GameHeaders.h"
 
-
-
-
 // Initializes all values needed for game startup (WIP)
 void initialize_game(GameData *gamedata)
 {
@@ -60,8 +57,21 @@ void initialize_game(GameData *gamedata)
         .biweek = 1,
         .month = 1,
         .season = 1,
-        .year = 1
+        .year = 1,
     };
+
+
+    strncpy(gamedata->date.char_biweek, "Early", NAMESIZE - 1);
+    gamedata->date.char_biweek[NAMESIZE - 1] = '\0';
+
+    strncpy(gamedata->date.char_month, "Jan", NAMESIZE - 1);
+    gamedata->date.char_month[NAMESIZE - 1] = '\0';
+
+    strncpy(gamedata->date.char_season, "Winter", NAMESIZE - 1);
+    gamedata->date.char_season[NAMESIZE - 1] = '\0';
+
+    strncpy(gamedata->date.char_year, "Junior", NAMESIZE - 1);
+    gamedata->date.char_season[NAMESIZE - 1] = '\0';
 }
 
 
@@ -71,32 +81,61 @@ void increment_turn(Date *date)
 
     int t = date->turn;
 
-    date->biweek = ((t - 1) % 2) + 1;
+    date->biweek = ((t - 1) % 2) + 1; // 1 to 2
 
-    date->month  = (((t - 1) % 24) / 2) + 1;
+    date->month  = (((t - 1) % 24) / 2) + 1; // 1 to 12
 
     int m = date->month;
 
-    date->season = (( m - 1) / 3) + 1;
+    date->season = (( m - 1) / 3) + 1; // 1 to 4
 
-    date->year   = ((t - 1) / 24) + 1;
+    date->year   = ((t - 1) / 24) + 1; // 1 to 3
+
+
+    // String initialization
+    const char *biweeks[] = {"ERROR", "Early", "Late", "     "};
+    const char *months[] = {"ERROR", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "   "};
+    const char *seasons[] = {"ERROR ", "Winter", "Spring", "Summer", "Fall  ", "      "};
+    const char *year[] = {"ERROR  ", "Junior ", "Classic", "Senior ", "     "};
+
+    // Update date displays
+    strncpy(date->char_biweek, biweeks[date->biweek], NAMESIZE - 1);
+    date->char_biweek[NAMESIZE - 1] = '\0';
+
+    strncpy(date->char_month, months[date->month], NAMESIZE - 1);
+    date->char_month[NAMESIZE - 1] = '\0';
+
+    strncpy(date->char_season, seasons[date->season], NAMESIZE - 1);
+    date->char_season[NAMESIZE - 1] = '\0';
+
+    strncpy(date->char_year, year[date->year], NAMESIZE - 1);
+    date->char_year[NAMESIZE - 1] = '\0';
+
 }
 
-void update_racer_stat(Racer *racer, Pass stat_type, int modifier)
+static int clamp(int value, int low, int high)
+    { return value < low ? // Is value less than low?
+            low : value > high ? // If true return lowerbound, if not check if value higher than high
+                high : value;  // If true return high, if not return initial value
+    }
+
+void update_racer_stat(Racer *racer, Pass stat_type, float modifier)
 {
+    int rounded = round_up( modifier);
+
     switch (stat_type)
     {
         // racer well-being
-        case NumCurrentEnergy: racer->current_energy += modifier; break;
+        case NumCurrentEnergy: racer->current_energy += clamp(racer->current_energy + modifier, 0, racer->max_energy); break;
         case NumMaxEnergy: racer->max_energy += modifier; break;
-        case NumMood: racer->mood += modifier; break;
+        case NumMood: racer->mood = clamp(racer->mood + modifier, 0, 7);  break;
 
         // Racing stats
-        case NumSpeed: racer->speed += modifier; break;
-        case NumStamina: racer->stamina += modifier; break;
-        case NumPower: racer->power += modifier; break;
-        case NumGuts: racer->guts += modifier; break;
-        case NumWit: racer->wit += modifier; break;
+        case NumSpeed: racer->speed += rounded; break;
+        case NumStamina: racer->stamina += rounded; break;
+        case NumPower: racer->power += rounded; break;
+        case NumGuts: racer->guts += rounded; break;
+        case NumWit: racer->wit += rounded; break;
 
         // Multipliers
         case NumSpeedMult: racer->speed_multiplier += modifier; break;
@@ -120,8 +159,8 @@ void update_racer_stat(Racer *racer, Pass stat_type, int modifier)
         case NumLongAffinity: racer->long_affinity += modifier; break;
 
         //Miscellaneous
-        case NumPopularity: racer->popularity += modifier; break;
-        case NumFans: racer->fans += modifier; break;
+        case NumPopularity: racer->popularity += rounded; break;
+        case NumFans: racer->fans += rounded; break;
 
         //Error
         default: break;
@@ -232,6 +271,13 @@ int input_character(char *input)
 void reset_inputs(MenuInputs *inputs)
 {
     inputs->choice = 0;
+    inputs->name[0] = '\0';
+    inputs->type = -1;
     inputs->confirm = 0;
     inputs->status = 0;
+}
+
+int round_up(float input)
+{
+    return (input >= 0) ? (int)ceilf(input) : (int)floorf(input);
 }

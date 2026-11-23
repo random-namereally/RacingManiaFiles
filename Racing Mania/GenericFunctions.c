@@ -1,5 +1,4 @@
 #include "GameHeaders.h"
-#include "GenericFunctions.h"
 
 // Nothing on the stdout or stdin on our way out
 // Also for pausing
@@ -21,7 +20,7 @@ void clear_screen()
 }
 
 // Solana look at this function pointer... took me some tries... it's hard to understand
-int std_get_int(int min, int max, MenuInputs *input, (*display)(int, int), (*status_msg)(int, int, int))
+int std_get_int(int min, int max, MenuInputs *input, void (*display)(int, int), void (*status_msg)(int, int, int))
 {
     while (1)
     {
@@ -45,7 +44,7 @@ int std_get_int(int min, int max, MenuInputs *input, (*display)(int, int), (*sta
 }
 
 //Prints message based on error number given
-void std_status_msg(int min, int max, int status, int type)
+void std_status_msg(int min, int max, int status)
 {
     if (status==IntValid||status==CharValid) {return;}
 
@@ -57,9 +56,9 @@ void std_status_msg(int min, int max, int status, int type)
         case IntInvalidTooLow:          printf("[ERROR: Input must be higher than %d!]", min);              break;
         case IntInvalidNotInteger:      printf("[ERROR: Input must be a whole number!]");                   break;
         case IntEOF:                    printf("[ERROR: End of input.]");                                   break;
-        case CharTruncatedAndEmpty:     printf("[ERROR: Input was truncated and empty!]");                  break;
-        case CharTruncated:             printf("[ERROR: Input must be at most %d characters!]", max);       break;
-        case CharEmpty:                 printf("[ERROR: Input cannot be empty!]");                          break;
+        case CharTruncatedAndEmpty:     printf("[Warning: Input was truncated for being longer than %d characters and empty!]", NAMESIZE-1);                  break;
+        case CharTruncated:             printf("[Warning: Input was truncated for being longer than %d characters]", NAMESIZE-1);       break;
+        case CharEmpty:                 printf("[Warning: Input was empty!]");                          break;
         case CharEOF:                   printf("[ERROR: End of input.]");                                   break;
         default:                        printf("[ERROR: Unknown input.]");                                  break;
         }
@@ -75,7 +74,13 @@ void std_header(const char *header) {
 
 void std_prompt(const char *prompt, int min, int max) {
     if (min!=0||max!=0) {printf("Enter %s(%d-%d): ", prompt, min, max);}
-    if (min==0||max==0) {printf("Enter %s: ", prompt);}
+    else if (min == 0 && max == 0) {printf("Enter %s: ", prompt);}
+    else {printf("Error: neither character or integer selector go to function prompt()"); exit(1);}
+
+}
+
+void std_overview(GameData *gamedata)
+{
 
 }
 

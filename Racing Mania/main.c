@@ -1,6 +1,4 @@
 #include "GameHeaders.h"
-#include "GenericFunctions.h"
-
 
 int main ()
 {
@@ -14,8 +12,8 @@ int main ()
     {
     case SceneStartMenu:    current_scene = main_start_menu(&gamedata); break;
     case SceneStartCareer: current_scene = main_start_career_menu(&gamedata); break;
-    case SceneLoadCareer: current_scene = main_load_career_menu(&gamedata); break;
-    case SceneViewLeaderboard: current_scene = main_leaderboard_menu(&gamedata); break;
+    //case SceneLoadCareer: current_scene = main_load_career_menu(&gamedata); break;
+    //case SceneViewLeaderboard: current_scene = main_leaderboard_menu(&gamedata); break;
     case SceneDebug: current_scene = main_debug_menu(&gamedata); break;
     case SceneBlackjack: current_scene = main_blackjack(&gamedata); break;
     case SceneError: exit(1); break;

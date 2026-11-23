@@ -2,7 +2,7 @@
 #define GAMEHEADERS_H
 
 /*
-Hello GOATS, place your needed headers here so each file only uses "game_headers.h", for simpler coding.
+Hello GOATS, place your needed headers here so each file only uses "GameHeaders.h", for simpler coding.
 
 Format for user-defined headers as such:
 
@@ -28,19 +28,20 @@ Deeper explanations can be inside the header itself. Thank you!
     #include "blackjack.h"
 
 // Menus
+int main_blackjack(GameData *gamedata);
 
-int main_example_menu(GameData *gamedata);
-
-int main_start_menu(GameData *gamedata);
+int main_action_hub_menu(GameData *gamedata);
 
 int main_start_career_menu(GameData *gamedata);
 int main_load_career_menu(GameData *gamedata);
 int main_leaderboard_menu(GameData *gamedata);
 int main_debug_menu(GameData *gamedata);
 
-int main_action_hub_menu(GameData *gamedata);
+int main_start_menu(GameData *gamedata);
 
-int main_blackjack(GameData *gamedata);
+int main_example_menu(GameData *gamedata);
+
+
 
 
 

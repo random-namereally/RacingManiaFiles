@@ -8,7 +8,6 @@ typedef enum
     NameTrainee,
     NameTrainer,
     StartGame,
-    Error,
 
 } CHOICES;
 
@@ -40,9 +39,6 @@ int main_start_career_menu(GameData *gamedata)
     //Input Validation and Execution
     get_input(min, max, gamedata->trainer.is_trainer_named, gamedata->trainee.is_trainee_named, &input);
     return execute(&input, gamedata, can_start);
-
-    //Out of bounds catcher
-    return SceneError;
 }
 
 // Displays example menu
@@ -112,9 +108,7 @@ static int execute (MenuInputs *input, GameData *gamedata, int can_start)
         case StartGame:
                             if(can_start==true){return SceneActionHub;}
 
-                            printf("\n\nFinish Setup Dawg"); int c; while ((c = getchar()) != '\n' && c != EOF); return SceneStartCareer;
-
-        case Error: printf("\n\n[Error: End of menu. Exiting program]"); return SceneError;
+                            printf("\n\nFinish Setup Dawg"); getflush(); return SceneStartCareer;
         default: printf("\n\n[Error: No code to execute. Check execute() or min and max?]"); return SceneError;
     }
 }

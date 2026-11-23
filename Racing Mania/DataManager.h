@@ -1,5 +1,5 @@
-#ifndef GAME_STATE_H
-#define GAME_STATE_H
+#ifndef DATAMANAGER_H
+#define DATAMANAGER_H
 
 // Game version for flair
 #define GAME_VERSION "v0.2"
@@ -159,15 +159,19 @@ typedef struct {
     int month;
     int season;
     int year;
+    char char_biweek[NAMESIZE];
+    char char_month[NAMESIZE];
+    char char_season[NAMESIZE];
+    char char_year[NAMESIZE];
 } Date;
 
 // Start of Track and race data structs
 
     typedef struct {
-        char elevation[1000]; // Note: Each index is 2.5 meters
-        char curve[1000]; // Curve relative to previous meter, local curve.
-        char left_width[1000]; // how wide from the center to the left each part of a track is
-        char right_width[1000]; // how wide from the center to the right each part of a track is
+        char elevation[2500]; // Note: Each index is 2.5 meters
+        char curve[2500]; // Curve relative to previous meter, local curve.
+        char left_width[2500]; // how wide from the center to the left each part of a track is
+        char right_width[2500]; // how wide from the center to the right each part of a track is
     } TrackMapData; //VERY HEAVY only one must be loaded at a time. 100 of these is 3mb
 
     typedef struct {
@@ -228,19 +232,19 @@ typedef struct {
 // GAMEDATA an important struct holding all the most important data of the game
 
 typedef struct {
-Racer trainee;
-Trainer trainer;
-Date date;
-Racer rival[50];
-RaceRacerData racer[20];
-TrackMetaData trackmetadata[30];
-int rain_chance;
+    Racer trainee;
+    Trainer trainer;
+    Date date;
+    Racer rival[50];
+    RaceRacerData racer[20];
+    TrackMetaData trackmetadata[30];
+    int rain_chance;
 } GameData; //All data that needs to be funneled out of the game.
 
 // DIAGNOSTICS empty rn, probably holds diagnostic data, implement lest
 
 typedef struct {
-
+    int addmemberlater;
 } Diagnostics;
 
 // Function declarations
@@ -250,7 +254,7 @@ void initialize_game(GameData *gamedata); // God-initialize struct for anything 
 void increment_turn(Date *date); // Increments turn by 1 and updates all date data
 
 // Stat updaters
-void update_racer_stat(Racer *racer, Pass stat_type, int modifier); //update_racer_stat(&racer, stat_type, modifier);
+void update_racer_stat(Racer *racer, Pass stat_type, float modifier); //update_racer_stat(&racer, stat_type, modifier);
 void update_trainer_stat(Trainer *trainer, Pass stat_type, int modifier); //update_trainer_stat(&trainer, stat_type, modifier);
 void update_racer_name(Racer *racer, const char* input); //update_racer_name(&racer, input);
 void update_trainer_name(Trainer *trainer, const char* input);
@@ -259,5 +263,6 @@ void update_trainer_name(Trainer *trainer, const char* input);
 void reset_inputs(MenuInputs *inputs);
 int input_integer(int min, int max, int *input);
 int input_character(char *input);
+int round_up(float input);
 
 #endif
