@@ -4,7 +4,7 @@
 int main_training(GameData *gamedata){
     make_training_choice(&gamedata->trainee, &gamedata->trainer);
     getchar();
-    return SceneStartMenu;
+    return SceneActionHub;
 }
 
 void train_racer(Racer *trainee, Trainer *trainer, Pass stat_type){

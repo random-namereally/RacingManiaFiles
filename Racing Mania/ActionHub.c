@@ -40,7 +40,7 @@ static int execute (int choice, GameData *gamedata)
 {
     switch (choice)
     {
-        case Training:  return SceneTemplate;
+        case Training:  return SceneTrainingHub;
         case Resting:  return SceneTemplate;
         case Infirmary:  return SceneTemplate;
         case Recreation:  return SceneTemplate;
