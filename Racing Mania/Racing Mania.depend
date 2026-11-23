@@ -53,12 +53,12 @@
 1795357480 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\datamanager.c
 	"GameHeaders.h"
 
-1795416633 c:\users\youop\documents\github\racingmaniafiles\racing mania\datamanager.h
+1795425342 c:\users\youop\documents\github\racingmaniafiles\racing mania\datamanager.h
 
-1795420721 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\actionhub.c
+1795425342 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\actionhub.c
 	"GameHeaders.h"
 
-1795392633 c:\users\youop\documents\github\racingmaniafiles\racing mania\gameheaders.h
+1795425497 c:\users\youop\documents\github\racingmaniafiles\racing mania\gameheaders.h
 	"header_name.h"
 	<stdio.h>
 	<stdlib.h>
@@ -70,6 +70,7 @@
 	"DataManager.h"
 	"GenericFunctions.h"
 	"blackjack.h"
+	"training.h"
 
 1794368420 c:\users\youop\documents\github\racingmaniafiles\racing mania\mainmenu.h
 
@@ -78,7 +79,7 @@
 1794368420 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\mainmenu.c
 	"GameHeaders.h"
 
-1795420857 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\startmenu.c
+1795424729 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\startmenu.c
 	"GameHeaders.h"
 
 1795268535 c:\users\youop\documents\github\racingmaniafiles\racing mania\startmenu.h
@@ -121,14 +122,14 @@
 1795357706 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\genericfunctions.h
 	"GameHeaders.h"
 
-1795420692 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\genericfunctions.c
+1795424729 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\genericfunctions.c
 	"GameHeaders.h"
 
 1795416925 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\training_main.c
 	"training.h"
 	"GameHeaders.h"
 
-1795415829 c:\users\youop\documents\github\racingmaniafiles\racing mania\training.h
+1795425497 c:\users\youop\documents\github\racingmaniafiles\racing mania\training.h
 	"GameHeaders.h"
 
 1795420735 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\generictemplate.c

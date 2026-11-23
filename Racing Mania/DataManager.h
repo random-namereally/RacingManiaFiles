@@ -13,6 +13,7 @@ typedef enum { //This essentially is an enum for ease of understanding in how th
     SceneDebug,
     SceneBlackjack,
     SceneActionHub,
+    SceneTrainingHub,
     SceneEnding,
     SceneError,
     SceneExitGame,

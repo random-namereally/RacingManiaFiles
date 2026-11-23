@@ -26,6 +26,7 @@ Deeper explanations can be inside the header itself. Thank you!
     #include "DataManager.h"        // Central Hub for all game data. Includes Data validation.
     #include "GenericFunctions.h"
     #include "blackjack.h"
+    #include "training.h"
 
 // Menus
 int main_blackjack(GameData *gamedata);

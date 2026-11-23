@@ -34,13 +34,14 @@ static void display(int min, int max, GameData *gamedata)
 {
     std_header("RACING MANIA");
 
+
+
     printf("1. Start New Career\n");
     printf("2. Load Ongoing Career\n");
     printf("3. View Leaderboard\n");
     printf("4. Debug and options\n");
     printf("5. Blackjack\n");
     printf("6. Quit Game                                   %s\n", GAME_VERSION);
-    printf("--------------------------------------------------\n");
 
     std_prompt("selection", min, max);
 }

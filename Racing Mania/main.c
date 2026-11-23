@@ -19,6 +19,7 @@ int main ()
     case SceneError: exit(1); break;
     case SceneExitGame: clear_screen(); printf("Thanks for playing!\n Press Enter to Quit\n"); getchar(); exit(0); break;
     case SceneActionHub: current_scene = main_action_hub_menu(&gamedata); break;
+    case SceneTrainingHub: current_scene= main_training(&gamedata); break;
     //case SceneEnding: current_scene = ending_screen(&gamedata);break;
     default: exit(1); break;
     }

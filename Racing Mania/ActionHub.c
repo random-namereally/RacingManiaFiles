@@ -5,8 +5,8 @@ typedef enum
 {
     TEMP,
     Training,
-    Infirmary,
     Resting,
+    Infirmary,
     Recreation,
     Racing,
     MainMenu,
@@ -40,6 +40,11 @@ static int execute (int choice, GameData *gamedata)
 {
     switch (choice)
     {
+        case Training:  return SceneTemplate;
+        case Resting:  return SceneTemplate;
+        case Infirmary:  return SceneTemplate;
+        case Recreation:  return SceneTemplate;
+        case Racing:  return SceneTemplate;
         case MainMenu:  return SceneTemplate;
         default: printf("\n\n[Error: No code to execute. Check execute() or min and max?]");    return SceneError;
     }
@@ -51,7 +56,6 @@ static void display (int min, int max, GameData *gamedata)
 
     std_overview(gamedata);
 
-    printf("--------------------------------------------------\n");
     printf("Where to go:\n");
     printf("1. Training\n");
     printf("2. Rest\n");
@@ -59,6 +63,6 @@ static void display (int min, int max, GameData *gamedata)
     printf("4. Recreation\n");
     printf("5. Race\n");
     printf("6. Main Menu\n");
-    printf("--------------------------------------------------\n");
+
     std_prompt("Integer", min, max);
 }

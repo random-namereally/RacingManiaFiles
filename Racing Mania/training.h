@@ -2,7 +2,8 @@
 #ifndef TRAINING_H
 #define TRAINING_H
 
-//ARE THESE THINGS GONNA BE USED ELSEWHERE?
+//Allows it to be used elsewhere
+int main_training(GameData *gamedata);
 
 //increases racer stats at the cost of energy and cash
 void train_racer(Racer *trainee, Trainer *trainer, Pass stat_type);
