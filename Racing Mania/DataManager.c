@@ -250,10 +250,6 @@ int input_character(char *input)
         while (i>=0 && (isspace((unsigned char)temp[i])||(unsigned char)temp[i] == 0xA0)) //So like emojis kills stuff with no unsigned char, I was thinking since Ascii is defnitely not complete so there must be more and this is like whatchacallit beyond that so i wondered how c handles it and yeaah it sucks
         {i--;} temp[i+1]='\0'; // Same shtick as earlier, removes trailing spaces
 
-    // z. actually in the wrong function ignore for now.
-    /* strcpy(input, "Great Taste Kopik O");
-        input[strlen("Great Taste Kopik O")] = '\0'; */
-
     // d. if string is empty place warning
     if (strlen(temp)==0) empty++; //Sets empty to true
 

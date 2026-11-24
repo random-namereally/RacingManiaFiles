@@ -50,12 +50,12 @@
 
 1794305964 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\shareddisplay.c
 
-1795357480 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\datamanager.c
+1795495874 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\datamanager.c
 	"GameHeaders.h"
 
 1795490997 c:\users\youop\documents\github\racingmaniafiles\racing mania\datamanager.h
 
-1795425342 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\actionhub.c
+1795490997 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\actionhub.c
 	"GameHeaders.h"
 
 1795425497 c:\users\youop\documents\github\racingmaniafiles\racing mania\gameheaders.h
@@ -91,12 +91,12 @@
 1795394918 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\tempholder.c
 	"GameHeaders.h"
 
-1795357065 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\startcareer.c
+1795491310 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\startcareer.c
 	"GameHeaders.h"
 
 1794675907 c:\users\youop\documents\github\racingmaniafiles\racing mania\debug.h
 
-1794675907 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\debug.c
+1795491141 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\debug.c
 	"GameHeaders.h"
 
 1795394918 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\blackjack.c
@@ -115,14 +115,14 @@
 
 1795268535 c:\users\youop\documents\github\racingmaniafiles\racing mania\generictemplate.h
 
-1795420692 c:\users\youop\documents\github\racingmaniafiles\racing mania\genericfunctions.h
+1795496492 c:\users\youop\documents\github\racingmaniafiles\racing mania\genericfunctions.h
 
 1795357425 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\datamanager.h
 
 1795357706 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\genericfunctions.h
 	"GameHeaders.h"
 
-1795424729 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\genericfunctions.c
+1795491350 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\genericfunctions.c
 	"GameHeaders.h"
 
 1795435782 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\training_main.c
@@ -132,9 +132,9 @@
 1795425497 c:\users\youop\documents\github\racingmaniafiles\racing mania\training.h
 	"GameHeaders.h"
 
-1795420735 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\generictemplate.c
+1795495139 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\generictemplate.c
 	"GameHeaders.h"
 
-1795435641 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\postturnshandler.c
+1795490996 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\postturnshandler.c
 	"GameHeaders.h"
 

@@ -2,4 +2,6 @@
 
 int main_debug_menu(GameData *gamedata){
 
+    return SceneStartMenu;
+
 }

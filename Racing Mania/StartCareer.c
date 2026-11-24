@@ -12,12 +12,13 @@ typedef enum
 } CHOICES;
 
 //Declaration of single file functions
-static void display_menu (int min, int max, int is_trainer_named, int is_trainee_named, int mode);
-static void get_input(int min, int max, int is_trainer_named, int is_trainee_named, MenuInputs *input);
+static void display_menu (int min, int max, GameData *gamedata);
+static void display_nameselect ();
+static void display_confirm(int first_time, int, GameData *gamedata);
+static void get_input(int min, int max, GameData *gamedata, MenuInputs *input);
 static int execute (MenuInputs *input, GameData *gamedata, int can_start);
-static void err_msg(int min, int max, int status);
-static void name_trainee(MenuInputs *input, Racer *trainee);
-static void name_trainer(MenuInputs *input, Trainer *trainer);
+static void name_entity(MenuInputs *input, GameData *gamedata, int mode);
+static void adjust_empty(char* input, int);
 static int game_requirements(Racer *trainee, Trainer *trainer);
 
 int main_start_career_menu(GameData *gamedata)
@@ -34,66 +35,43 @@ int main_start_career_menu(GameData *gamedata)
 
     //Clears previous screen then prints the menu
     printf("\033[2J\033[H");
-    display_menu (min, max, gamedata->trainer.is_trainer_named, gamedata->trainee.is_trainee_named, 1);
+    display_menu(min, max, gamedata);
 
     //Input Validation and Execution
-    get_input(min, max, gamedata->trainer.is_trainer_named, gamedata->trainee.is_trainee_named, &input);
+    std_get_int(min, max, &input, gamedata, display_menu, std_status_msg);
     return execute(&input, gamedata, can_start);
 }
 
 // Displays example menu
-static void display_menu(int min, int max, int is_trainer_named, int is_trainee_named, int mode)
+static void display_menu(int min, int max, GameData *gamedata)
 {
 
-switch (mode)
-{
-case 1:
-    printf("==================================================\n");
-
-    printf("                START CAREER      \n");
-
-    printf("==================================================\n");
+    std_header("Start Career");
 
     printf("1. Go back to main menu");
 
-    printf("\n2. Choose trainee name"); if(is_trainee_named==1) {printf(" [done]");}
+    printf("\n2. Choose trainee name");
+            if(gamedata->trainee.is_trainee_named==1) {printf(" [Done]");}
+            else printf(" [Required]");
 
-    printf("\n3. Choose trainer name"); if(is_trainer_named==1) {printf(" [done]");}
+    printf("\n3. Choose trainer name");
+            if(gamedata->trainer.is_trainer_named==1) {printf(" [Done]");}
+            else {printf(" [Required]");}
 
-    printf("\n4. Start Game"); if(is_trainee_named+is_trainer_named!=2) {printf(" [Finish setup first]");}
-    printf("\n--------------------------------------------------");
-    printf("\nEnter selection (%d-%d): ", min, max);
-break;
+    printf("\n4. Start Game");
+            if(gamedata->trainee.is_trainee_named+gamedata->trainer.is_trainer_named!=2)
+            {printf(" [Locked]");}
 
-case 2:
+    std_prompt("Selection", min, max);
+}
+
+static void display_nameselect()
+{
     printf("\033[2J\033[H");
 
-    printf("==================================================\n");
+    std_header("Name Select");
 
-    printf("                NAME SELECT      \n");
-
-    printf("==================================================\n");
-
-    printf("Enter name: ");
-break;
-}
-
-
-
-}
-
-// Gets input for the menu with validation. WARNING: INTEGER INPUTS ONLY
-static void get_input(int min, int max, int is_trainer_named, int is_trainee_named, MenuInputs *input)
-{
-    do
-    {
-        input->status = input_integer(min , max,&input->choice);
-        err_msg(min, max, input->status);
-        printf("\033[2J\033[H");
-        display_menu(min, max, is_trainer_named, is_trainee_named, 1);
-        if (input->status == IntEOF) return;
-    }
-    while (input->status != IntValid);
+    std_prompt("name", 0, 0);
 }
 
 // Executes validated choice
@@ -103,82 +81,90 @@ static int execute (MenuInputs *input, GameData *gamedata, int can_start)
     switch (input->choice)
     {
         case StartMenu:      return SceneStartMenu;
-        case NameTrainee:    name_trainee(input, &gamedata->trainee); return SceneStartCareer;
-        case NameTrainer:    name_trainer(input, &gamedata->trainer); return SceneStartCareer;
+        case NameTrainee:    name_entity(input, gamedata, 1); return SceneStartCareer;
+        case NameTrainer:    name_entity(input, gamedata, 2); return SceneStartCareer;
         case StartGame:
                             if(can_start==true){return SceneActionHub;}
 
-                            printf("\n\nFinish Setup Dawg"); getflush(); return SceneStartCareer;
+                            printf("\n\nFinish Setup"); getflush(); return SceneStartCareer;
         default: printf("\n\n[Error: No code to execute. Check execute() or min and max?]"); return SceneError;
     }
 }
 
-//Prints message based on error number given
-static void err_msg(int min, int max, int status)
+static void name_entity(MenuInputs *input, GameData *gamedata, int mode)
 {
-
-    if (status==IntValid) {return;}
-    printf("\033[A");
-    switch (status)
+    int first_time = 1;
+    while (input->confirm == 0)
     {
-    case IntInvalidTooHigh:       printf("[ERROR: Input must be lower than %d!]", max);  break;
-    case IntInvalidTooLow:        printf("[ERROR: Input must be higher than %d!]", min); break;
-    case IntInvalidNotInteger:    printf("[ERROR: Input must be a whole number!]");      break;
-    case IntEOF:                  printf("[ERROR: End of input.]");                      break;
-    default:                      printf("[ERROR: Unknown input.]");                     break;
+        display_nameselect();
+
+        input->status = input_character(input->name); //Gets input from user, cleans then flags
+
+        std_status_msg(0, 0, input->status);
+
+        if (mode==1)
+        {
+            adjust_empty(input->name, 1);
+            printf("The name of your uma is %s", input->name); // Placeholder from debug lmao
+            getflush();
+//          confirm_character(input->name, pass); //
+            update_racer_name(&gamedata->trainee, input->name);
+            gamedata->trainee.is_trainee_named = 1;
+        }
+        else
+        {
+            adjust_empty(input->name, 2);
+            printf("The name of your trainer is %s ", input->name);
+            getflush();
+//          confirm_character(input->name, pass); //
+            update_trainer_name(&gamedata->trainer, input->name);
+            gamedata->trainer.is_trainer_named = 1;
+        }
+
+        first_time = 0;
+
+        input->confirm = 1;                        // temporary: until confirm is done
     }
-
-    fflush(stdout);
-    int c; while ((c = getchar()) != '\n' && c != EOF);
-
-}
-
-
-static void name_trainee(MenuInputs *input, Racer *trainee)
-{
-    while (input->confirm==0)
-    {
-    display_menu(0, 0, 0, 0, 2);
-
-    input_character(input->name); //Gets input from user, cleans then flags
-
-    //name_adjust(input->name, 1); // Adjusts name, give placeholder
-
-    printf("The name of your uma is %s", input->name); // Placeholder from debug lmao
-    fflush(stdout);
-    int c; while ((c = getchar()) != '\n' && c != EOF);
-//    confirm_character(input->name, pass); //
-    update_racer_name(trainee, input->name);
-
-input->confirm = 1;                        // temporary: until confirm is done
-    }
-    trainee->is_trainee_named=1;
 
     reset_inputs(input); // Reset inputs for reuse
-
 }
 
-static void name_trainer(MenuInputs *input, Trainer *trainer)
+static void adjust_empty(char* input, int mode)
 {
-    while (input->confirm==0)
+    if (strlen(input)!=0) return;
+    if (mode==1)
     {
-    display_menu(0,0,0,0, 2);
-
-    input_character(input->name); //Gets input from user, cleans then flags
-
-//  name_adjust(input->name, 2); // Adjusts name, give placeholder
-
-    printf("The name of your trainer is %s ", input->name);
-    fflush(stdout);
-    int c; while ((c = getchar()) != '\n' && c != EOF);
-//    confirm_character(input->name, pass); //
-    update_trainer_name(trainer, input->name);
-input->confirm = 1;                        // temporary: until confirm is done type shi
+        strcpy(input, "Great Taste Kopik O");
+        input[strlen("Great Taste Kopik O")] = '\0';
     }
+    if (mode==2)
+    {
+        strcpy(input, "Torena San");
+        input[strlen("Torena San")] = '\0';
+    }
+}
 
-    trainer->is_trainer_named=1;
+static void confirm_name(GameData *gamedata, MenuInputs *input, int mode, int first_time)
+{
+    display_confirm(first_time, 1, gamedata);
 
-    reset_inputs(input); // Reset inputs for reuse
+    std_get_int(1, 2, input, gamedata, display_confirm, std_status_msg);
+
+    input->confirm = 1;
+}
+
+static void display_confirm(int first_time, int, GameData *gamedata)
+{
+    printf("\033[2J\033[H");
+
+    if (first_time) std_header("Confirm as name");
+    else {std_header("Confirm new name");}
+
+    printf("1. Redo name\n");
+
+    printf("2. Confirm name\n");
+
+    std_prompt("name", 0, 0);
 }
 
 
