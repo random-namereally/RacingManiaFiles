@@ -169,14 +169,16 @@ typedef struct {
 
 // Start of Track and race data structs
 
-    typedef struct {
-        char elevation[2500]; // Note: Each index is 2.5 meters
-        char curve[2500]; // Curve relative to previous meter, local curve.
-        char left_width[2500]; // how wide from the center to the left each part of a track is
-        char right_width[2500]; // how wide from the center to the right each part of a track is
-    } TrackMapData; //VERY HEAVY only one must be loaded at a time. 100 of these is 3mb
+    typedef struct { // These are the instructions for making the track
+        int id;
+        int elevation[2][30]; // format for all of this is
+        int curve[2][30];
+        int left_width[2][30];
+        int right_width[2][30];
+    } TrackMapData;
 
-    typedef struct {
+    typedef struct { // These are the data for each track which may be used outside of a race
+        int id;
         int length;
         int ground;
         int prestige; //Open<G3<G2<G1 from lowest to highest
@@ -190,7 +192,7 @@ typedef struct {
         int entered;          // If player is in the race (Entered, Not Entered, Mandatory, Blocked, Was Entered, Was mandatory)
     } TrackMetaData; // Lighter data that all a player needs to see
 
-    typedef struct {
+    typedef struct { // Data of each racer in a race
 
         float meters_ran;
         float meters_left;
@@ -223,9 +225,17 @@ typedef struct {
         float challenge_acc_boost;
     } RaceRacerData;
 
+    typedef struct { // This is the track itself once loaded
+        int id;
+        int elevation[2500]; // format for all of this is
+        int curve[2500];
+        int left_width[2500];
+        int right_width[2500];
+    } TrackSimData;
+
     typedef struct {
         RaceRacerData racer[20];
-        TrackMapData trackmapdata;
+        TrackSimData tracksimdata;
         int condition;
     } RaceSimData; //Local to Races only
 

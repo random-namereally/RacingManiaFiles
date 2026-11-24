@@ -41,11 +41,11 @@ static int execute (int choice, GameData *gamedata)
     switch (choice)
     {
         case Training:  return SceneTrainingHub;
-        case Resting:  return SceneTemplate;
-        case Infirmary:  return SceneTemplate;
-        case Recreation:  return SceneTemplate;
-        case Racing:  return SceneTemplate;
-        case MainMenu:  return SceneTemplate;
+        case Resting:  return SceneActionHub;
+        case Infirmary:  return SceneActionHub;
+        case Recreation:  return SceneActionHub;
+        case Racing:  return SceneActionHub;
+        case MainMenu:  return SceneActionHub;
         default: printf("\n\n[Error: No code to execute. Check execute() or min and max?]");    return SceneError;
     }
 }
