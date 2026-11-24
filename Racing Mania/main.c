@@ -3,7 +3,9 @@
 int main ()
 {
     GameData gamedata;
+    rand_seed();
     initialize_game(&gamedata);
+
 
   int current_scene = SceneStartMenu;
   while(1)
