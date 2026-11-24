@@ -3,7 +3,6 @@
 
 
 int main_blackjack(GameData *gamedata){
-    rand_seed();
     BJscore score = initialize_bj_score();
     roll_dealer_dice(&score.dealertotal);
     roll_player_dice(&score.playertotal);

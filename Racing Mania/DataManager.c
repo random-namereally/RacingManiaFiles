@@ -3,6 +3,8 @@
 // Initializes all values needed for game startup (WIP)
 void initialize_game(GameData *gamedata)
 {
+    rand_seed();
+
     gamedata->trainee = (Racer) // My hands bled without complex literals or whatever the tutorial said, this looks cleaner too
     {
         .name = "Error: No name",
