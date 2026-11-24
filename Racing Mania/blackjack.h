@@ -5,6 +5,14 @@
 
 #define DECK_SIZE 11
 
+#define PRIZE 20
+
+#define PENALTY -20
+
+#define MOOD_GAIN 1
+
+#define MOOD_PENALTY 1
+
 typedef struct{
     int roll;
     }roller;
