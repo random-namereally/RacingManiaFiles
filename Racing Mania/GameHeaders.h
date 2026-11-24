@@ -31,6 +31,8 @@ Deeper explanations can be inside the header itself. Thank you!
 // Menus
 int main_blackjack(GameData *gamedata);
 
+int main_post_turn_handler(GameData *gamedata);
+
 int main_action_hub_menu(GameData *gamedata);
 
 int main_start_career_menu(GameData *gamedata);

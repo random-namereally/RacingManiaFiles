@@ -1,6 +1,7 @@
 #include "GameHeaders.h"
 
-
+int main_post_turn_handler(GameData *gamedata)
+{
 // increment turn
 
 //check if goal met
@@ -12,6 +13,8 @@
 // one of the events is just /no event/ to prevent loop
 // endwhile
 
-//go back to actionhub
+return SceneActionHub;
+}
+
 
 

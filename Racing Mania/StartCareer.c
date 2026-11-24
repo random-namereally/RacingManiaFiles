@@ -18,6 +18,7 @@ static void display_confirm(int first_time, int, GameData *gamedata);
 static void get_input(int min, int max, GameData *gamedata, MenuInputs *input);
 static int execute (MenuInputs *input, GameData *gamedata, int can_start);
 static void name_entity(MenuInputs *input, GameData *gamedata, int mode);
+static void confirm_name(GameData *gamedata, MenuInputs *input, int mode, int first_time);
 static void adjust_empty(char* input, int);
 static int game_requirements(Racer *trainee, Trainer *trainer);
 
@@ -105,25 +106,35 @@ static void name_entity(MenuInputs *input, GameData *gamedata, int mode)
         if (mode==1)
         {
             adjust_empty(input->name, 1);
-            printf("The name of your uma is %s", input->name); // Placeholder from debug lmao
+            printf("The name of your uma is %s", input->name);
             getflush();
-//          confirm_character(input->name, pass); //
-            update_racer_name(&gamedata->trainee, input->name);
-            gamedata->trainee.is_trainee_named = 1;
+            confirm_name(gamedata, input, 1, first_time);
         }
         else
         {
             adjust_empty(input->name, 2);
             printf("The name of your trainer is %s ", input->name);
             getflush();
-//          confirm_character(input->name, pass); //
-            update_trainer_name(&gamedata->trainer, input->name);
-            gamedata->trainer.is_trainer_named = 1;
+            confirm_name(gamedata, input, 2, first_time);
+            printf("\n1 [debug] choice=%d confirm=%d\n", input->choice, input->confirm);
+            getflush();
         }
-
         first_time = 0;
+        printf("\n2 [debug] choice=%d confirm=%d\n", input->choice, input->confirm);
+        getflush();
+    }
 
-        input->confirm = 1;                        // temporary: until confirm is done
+
+
+    if (mode==1)
+    {
+        update_racer_name(&gamedata->trainee, input->name);
+        gamedata->trainee.is_trainee_named = 1;
+    }
+    else
+    {
+        update_trainer_name(&gamedata->trainer, input->name);
+        gamedata->trainer.is_trainer_named = 1;
     }
 
     reset_inputs(input); // Reset inputs for reuse
@@ -146,11 +157,13 @@ static void adjust_empty(char* input, int mode)
 
 static void confirm_name(GameData *gamedata, MenuInputs *input, int mode, int first_time)
 {
+    reset_inputs(input);
+
     display_confirm(first_time, 1, gamedata);
 
     std_get_int(1, 2, input, gamedata, display_confirm, std_status_msg);
 
-    input->confirm = 1;
+    if (&input==2)  {input->confirm = 1;}
 }
 
 static void display_confirm(int first_time, int, GameData *gamedata)

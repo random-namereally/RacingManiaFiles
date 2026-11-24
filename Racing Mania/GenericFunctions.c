@@ -36,6 +36,7 @@ int std_get_int(int min, int max, MenuInputs *input,  GameData *gamedata, void (
 
         // Print error
         status_msg(min, max, input->status);
+        clear_screen();
         display(min, max, gamedata);
     }
 
@@ -52,8 +53,8 @@ void std_status_msg(int min, int max, int status)
 
         switch (status)
         {
-        case IntInvalidTooHigh:         printf("[ERROR: Input must be lower than %d!]", max);               break;
-        case IntInvalidTooLow:          printf("[ERROR: Input must be higher than %d!]", min);              break;
+        case IntInvalidTooHigh:         printf("[ERROR: Input must be lower than %d!]", max+1);               break;
+        case IntInvalidTooLow:          printf("[ERROR: Input must be higher than %d!]", min-1);              break;
         case IntInvalidNotInteger:      printf("[ERROR: Input must be a whole number!]");                   break;
         case IntEOF:                    printf("[ERROR: End of input.]");                                   break;
         case CharTruncatedAndEmpty:     printf("[Warning: Input was truncated for being longer than %d characters and empty!]", NAMESIZE-1);                  break;
