@@ -6,10 +6,19 @@ int main_training(GameData *gamedata){
     return SceneActionHub;
 }
 
-void train_racer(Racer *trainee, Trainer *trainer, Pass stat_type){
-    update_racer_stat(trainee, stat_type, +1);
-    update_racer_stat(trainee, NumCurrentEnergy, -1);
-    update_trainer_stat(trainer, NumCash, -10);
+int train_racer(Racer *trainee, Trainer *trainer, Pass stat_type){
+    if (trainee->current_energy > 0){
+        update_racer_stat(trainee, stat_type, +TRAINING_GAIN_STAT);
+        update_racer_stat(trainee, NumCurrentEnergy, -TRAINING_COST_ENERGY);
+        update_trainer_stat(trainer, NumCash, -TRAINING_COST_CASH);
+        return 1;
+    }else{
+        update_racer_stat(trainee, stat_type, -TRAINING_LOSE_STAT);
+        update_racer_stat(trainee, NumCurrentEnergy, -TRAINING_COST_ENERGY);
+        update_racer_stat(trainee, NumMood, -TRAINING_lOSE_MOOD);
+        update_trainer_stat(trainer, NumCash, -TRAINING_COST_CASH);
+        return 0;
+    }
 }
 
 void print_training_choice(void){
@@ -34,20 +43,35 @@ void make_training_choice(Racer *trainee, Trainer *trainer)
         scanf(" %1c", &playerchoice);
         getflush();
         if(playerchoice == '1'){
-            train_racer(trainee, trainer, NumSpeed);
-            printf("+1 Speed, -1 Energy, -10 Cash\n");
+            if(train_racer(trainee, trainer, NumSpeed)){
+                printf("+%d Speed, -%d Energy, -%d Cash\n", TRAINING_GAIN_STAT, TRAINING_COST_ENERGY, TRAINING_COST_CASH);
+            }else{
+                printf("-%d Mood, -%d Speed, -%d Energy, -%d Cash\n", TRAINING_lOSE_MOOD, TRAINING_LOSE_STAT, TRAINING_COST_ENERGY, TRAINING_COST_CASH);
+            }
         }else if(playerchoice == '2'){
-            train_racer(trainee, trainer, NumStamina);
-            printf("+1 Stamina -1 Energy, -10 Cash\n");
+            if(train_racer(trainee, trainer, NumStamina)){
+                printf("+%d Stamina, -%d Energy, -%d Cash\n", TRAINING_GAIN_STAT, TRAINING_COST_ENERGY, TRAINING_COST_CASH);
+            }else{
+                printf("-%d Mood, -%d Stamina, -%d Energy, -%d Cash\n", TRAINING_lOSE_MOOD, TRAINING_LOSE_STAT, TRAINING_COST_ENERGY, TRAINING_COST_CASH);
+            }
         }else if(playerchoice == '3'){
-            train_racer(trainee, trainer, NumPower);
-            printf("+1 Power, -1 Energy, -10 Cash\n");
+            if(train_racer(trainee, trainer, NumPower)){
+                printf("+%d Power, -%d Energy, -%d Cash\n", TRAINING_GAIN_STAT, TRAINING_COST_ENERGY, TRAINING_COST_CASH);
+            }else{
+                printf("-%d Mood, -%d Power, -%d Energy, -%d Cash\n", TRAINING_lOSE_MOOD, TRAINING_LOSE_STAT, TRAINING_COST_ENERGY, TRAINING_COST_CASH);
+            }
         }else if(playerchoice == '4'){
-            train_racer(trainee, trainer, NumGuts);
-            printf("+1 Guts, -1 Energy, -10 Cash\n");
+            if(train_racer(trainee, trainer, NumGuts)){
+                printf("+%d Guts, -%d Energy, -%d Cash\n", TRAINING_GAIN_STAT, TRAINING_COST_ENERGY, TRAINING_COST_CASH);
+            }else{
+                printf("-%d Mood, -%d Guts, -%d Energy, -%d Cash\n", TRAINING_lOSE_MOOD, TRAINING_LOSE_STAT, TRAINING_COST_ENERGY, TRAINING_COST_CASH);
+            }
         }else if(playerchoice == '5'){
-            train_racer(trainee, trainer, NumWit);
-            printf("+1 Wits, -1 Energy, -10 Cash\n");
+            if(train_racer(trainee, trainer, NumWit)){
+                printf("+%d Wits, -%d Energy, -%d Cash\n", TRAINING_GAIN_STAT, TRAINING_COST_ENERGY, TRAINING_COST_CASH);
+            }else{
+                printf("-%d Mood, -%d Wits, -%d Energy, -%d Cash\n", TRAINING_lOSE_MOOD, TRAINING_LOSE_STAT, TRAINING_COST_ENERGY, TRAINING_COST_CASH);
+            }
         }else if(playerchoice == '6'){
             break;
         }else{
