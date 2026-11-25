@@ -1,6 +1,6 @@
 #include "GameHeaders.h"
 
-int main_post_turn_handler(GameData *gamedata)
+void TurnTransition(GameData *gamedata)
 {
 increment_turn(&gamedata->date);
 
@@ -8,7 +8,7 @@ increment_turn(&gamedata->date);
 
 //check if goal met
 
-return SceneActionHub;
+return;
 }
 
 static void run_mandatory_events(GameData *gamedata)

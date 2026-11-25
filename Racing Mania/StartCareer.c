@@ -12,9 +12,9 @@ typedef enum
 } CHOICES;
 
 //Declaration of single file functions
-static void display_menu (int min, int max, GameData *gamedata);
+static void display_menu (int min, int max, GameData *gamedata, MenuInputs *input);
 static void display_nameselect ();
-static void display_confirm(int first_time, int, GameData *gamedata);
+static void display_confirm(int first_time, int, GameData *gamedata, MenuInputs *input);
 static void get_input(int min, int max, GameData *gamedata, MenuInputs *input);
 static int execute (MenuInputs *input, GameData *gamedata, int can_start);
 static void name_entity(MenuInputs *input, GameData *gamedata, int mode);
@@ -36,7 +36,7 @@ int main_start_career_menu(GameData *gamedata)
 
     //Clears previous screen then prints the menu
     printf("\033[2J\033[H");
-    display_menu(min, max, gamedata);
+    display_menu(min, max, gamedata, &input);
 
     //Input Validation and Execution
     std_get_int(min, max, &input, gamedata, display_menu, std_status_msg);
@@ -44,7 +44,7 @@ int main_start_career_menu(GameData *gamedata)
 }
 
 // Displays example menu
-static void display_menu(int min, int max, GameData *gamedata)
+static void display_menu(int min, int max, GameData *gamedata, MenuInputs *input)
 {
 
     std_header("Start Career");
@@ -113,14 +113,11 @@ static void name_entity(MenuInputs *input, GameData *gamedata, int mode)
         else
         {
             adjust_empty(input->name, 2);
-            printf("The name of your trainer is %s ", input->name);
-            getflush();
             confirm_name(gamedata, input, 2, first_time);
             printf("\n1 [debug] choice=%d confirm=%d\n", input->choice, input->confirm);
             getflush();
         }
         first_time = 0;
-        printf("\n2 [debug] choice=%d confirm=%d\n", input->choice, input->confirm);
         getflush();
     }
 
@@ -143,6 +140,7 @@ static void name_entity(MenuInputs *input, GameData *gamedata, int mode)
 static void adjust_empty(char* input, int mode)
 {
     if (strlen(input)!=0) return;
+
     if (mode==1)
     {
         strcpy(input, "Great Taste Kopik O");
@@ -157,27 +155,27 @@ static void adjust_empty(char* input, int mode)
 
 static void confirm_name(GameData *gamedata, MenuInputs *input, int mode, int first_time)
 {
-    reset_inputs(input);
-
-    display_confirm(first_time, 1, gamedata);
+    display_confirm(first_time, 0, gamedata, input);
 
     std_get_int(1, 2, input, gamedata, display_confirm, std_status_msg);
 
-    if (&input==2)  {input->confirm = 1;}
+    if (input->choice == 2)  {input->confirm = 1;}
 }
 
-static void display_confirm(int first_time, int, GameData *gamedata)
+static void display_confirm(int first_time, int, GameData *gamedata, MenuInputs *input)
 {
     printf("\033[2J\033[H");
 
     if (first_time) std_header("Confirm as name");
     else {std_header("Confirm new name");}
 
+    printf("The name is %s\n\n", input->name);
+
     printf("1. Redo name\n");
 
     printf("2. Confirm name\n");
 
-    std_prompt("name", 0, 0);
+    std_prompt("Selection", 1, 2);
 }
 
 

@@ -14,5 +14,6 @@ typedef enum
 }   Actions;
 
 void DoAction(GameData *gamedata, Actions action);
+void TurnTransition(GameData *gamedata);
 
 #endif

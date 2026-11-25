@@ -20,7 +20,7 @@ void clear_screen()
 }
 
 // Solana look at this function pointer... took me some tries... it's hard to understand
-int std_get_int(int min, int max, MenuInputs *input,  GameData *gamedata, void (*display)(int, int, GameData *gamedata), void (*status_msg)(int, int, int))
+int std_get_int(int min, int max, MenuInputs *input,  GameData *gamedata, void (*display)(int, int, GameData *gamedata, MenuInputs *input), void (*status_msg)(int, int, int))
 {
     while (1)
     {
@@ -37,7 +37,7 @@ int std_get_int(int min, int max, MenuInputs *input,  GameData *gamedata, void (
         // Print error
         status_msg(min, max, input->status);
         clear_screen();
-        display(min, max, gamedata);
+        display(min, max, gamedata, input);
     }
 
 
@@ -83,10 +83,10 @@ void std_prompt(const char *prompt, int min, int max) {
 
 void std_overview(GameData *gamedata)
 {
-    printf("Energy: %d/%d                   Turn 1    Year 1\n", gamedata->trainee.current_energy, gamedata->trainee.max_energy);
-    printf("Mood: Happy                       Early Jan Winter\n\n");
+    printf("Energy: %d/%d                   Turn %d    %s\n", gamedata->trainee.current_energy, gamedata->trainee.max_energy, gamedata->date.turn, gamedata->date.char_year);
+    printf("Mood: Unimplemented             %s %s %s\n\n", gamedata->date.char_biweek, gamedata->date.char_month, gamedata->date.char_season);
 
-    printf("GOAL: (3 turns) Reach 100 speed\n");
+    /*printf("GOAL: (3 turns) Reach 100 speed\n");*/
     printf("Spe: %d    Sta: %d    Pow: %d    Guts: %d   Wit: %d\n",
            gamedata->trainee.speed, gamedata->trainee.stamina, gamedata->trainee.power, gamedata->trainee.guts, gamedata->trainee.wit);
     printf("--------------------------------------------------\n");

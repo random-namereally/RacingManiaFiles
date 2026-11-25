@@ -4,6 +4,8 @@
 // Game version for flair
 #define GAME_VERSION "v0.2"
 #define NAMESIZE 51
+#define MAX_ENERGY 1000
+#define MAX_MULT 10
 
 typedef enum { //This essentially is an enum for ease of understanding in how the goto_scene works.
     SceneStartMenu,

@@ -14,7 +14,7 @@ typedef enum
 
 //Declaration of single file functions
 static int execute (int choice, GameData *gamedata);
-static void display (int min, int max, GameData *gamedata);
+static void display (int min, int max, GameData *gamedata, MenuInputs *input);
 
 int main_action_hub_menu(GameData *gamedata)
 {
@@ -27,7 +27,7 @@ int main_action_hub_menu(GameData *gamedata)
 
     //Clears previous screen then prints the menu
     printf("\033[2J\033[H");
-    display (min, max, gamedata);
+    display (min, max, gamedata, &input);
 
     //Input Validation and Execution
     std_get_int(min, max, &input, gamedata, display, std_status_msg);
@@ -50,7 +50,7 @@ static int execute (int choice, GameData *gamedata)
     }
 }
 
-static void display (int min, int max, GameData *gamedata)
+static void display (int min, int max, GameData *gamedata, MenuInputs *input)
 {
     std_header("Action Hub");
 

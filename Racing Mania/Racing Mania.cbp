@@ -34,9 +34,6 @@
 		<Unit filename="ActionHub.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="Action_Resolver.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="DataManager.c">
 			<Option compilerVar="CC" />
 		</Unit>

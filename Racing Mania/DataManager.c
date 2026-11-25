@@ -112,7 +112,6 @@ void increment_turn(Date *date)
 
     strncpy(date->char_year, year[date->year], NAMESIZE - 1);
     date->char_year[NAMESIZE - 1] = '\0';
-
 }
 
 static int clamp(int value, int low, int high)
@@ -123,48 +122,49 @@ static int clamp(int value, int low, int high)
 
 void update_racer_stat(Racer *racer, Pass stat_type, float modifier)
 {
-    int rounded = round_up( modifier);
+    int rounded = round_up(modifier);
 
     switch (stat_type)
     {
-        // racer well-being
-        case NumCurrentEnergy: racer->current_energy += clamp(racer->current_energy + modifier, 0, racer->max_energy); break;
-        case NumMaxEnergy: racer->max_energy += modifier; break;
-        case NumMood: racer->mood = clamp(racer->mood + modifier, 0, 7);  break;
+        // Racer well-being
+        case NumCurrentEnergy: racer->current_energy = clamp(racer->current_energy + rounded, 0, racer->max_energy);break;
+        case NumMaxEnergy: racer->max_energy = clamp(racer->max_energy + rounded, 1, MAX_ENERGY); break;
+
+        case NumMood: racer->mood = clamp(racer->mood + rounded, 0, 7); break;
 
         // Racing stats
-        case NumSpeed: racer->speed += rounded; break;
-        case NumStamina: racer->stamina += rounded; break;
-        case NumPower: racer->power += rounded; break;
-        case NumGuts: racer->guts += rounded; break;
-        case NumWit: racer->wit += rounded; break;
+        case NumSpeed: racer->speed = clamp(racer->speed + rounded, 0, 1200); break;
+        case NumStamina: racer->stamina = clamp(racer->stamina + rounded, 0, 1200); break;
+        case NumPower: racer->power = clamp(racer->power + rounded, 0, 1200); break;
+        case NumGuts: racer->guts = clamp(racer->guts + rounded, 0, 1200); break;
+        case NumWit: racer->wit = clamp(racer->wit + rounded, 0, 1200); break;
 
         // Multipliers
-        case NumSpeedMult: racer->speed_multiplier += modifier; break;
-        case NumStaminaMult: racer->stamina_multiplier += modifier; break;
-        case NumPowerMult: racer->power_multiplier += modifier; break;
-        case NumGutsMult: racer->guts_multiplier += modifier; break;
-        case NumWitMult: racer->wit_multiplier += modifier; break;
+        case NumSpeedMult: racer->speed_multiplier += clamp(racer->mood + rounded, 0, MAX_MULT); break;
+        case NumStaminaMult: racer->stamina_multiplier += clamp(racer->mood + rounded, 0, MAX_MULT); break;
+        case NumPowerMult: racer->power_multiplier += clamp(racer->mood + rounded, 0, MAX_MULT); break;
+        case NumGutsMult: racer->guts_multiplier += clamp(racer->mood + rounded, 0, MAX_MULT); break;
+        case NumWitMult: racer->wit_multiplier += clamp(racer->mood + rounded, 0, MAX_MULT); break;
 
         // Affinities
-        case NumFrontrunnerAffinity: racer->frontrunner_affinity += modifier; break;
-        case NumPacechaserAffinity: racer->pacechaser_affinity += modifier; break;
-        case NumLatesurgerAffinity: racer->latesurger_affinity += modifier; break;
-        case NumEndcloserAffinity: racer->endcloser_affinity += modifier; break;
+        case NumFrontrunnerAffinity: racer->frontrunner_affinity = clamp(racer->frontrunner_affinity + rounded, 1, 7); break;
+        case NumPacechaserAffinity: racer->pacechaser_affinity = clamp(racer->pacechaser_affinity + rounded, 1, 7); break;
+        case NumLatesurgerAffinity: racer->latesurger_affinity = clamp(racer->latesurger_affinity + rounded, 1, 7); break;
+        case NumEndcloserAffinity: racer->endcloser_affinity = clamp(racer->endcloser_affinity + rounded, 1, 7); break;
 
-        case NumDirtAffinity: racer->dirt_affinity += modifier; break;
-        case NumTurfAffinity: racer->turf_affinity += modifier; break;
+        case NumDirtAffinity: racer->dirt_affinity = clamp(racer->dirt_affinity + rounded, 1, 7); break;
+        case NumTurfAffinity: racer->turf_affinity = clamp(racer->turf_affinity + rounded, 1, 7); break;
 
-        case NumSprintAffinity: racer->sprint_affinity += modifier; break;
-        case NumMileAffinity: racer->mile_affinity += modifier; break;
-        case NumMediumAffinity: racer->medium_affinity += modifier; break;
-        case NumLongAffinity: racer->long_affinity += modifier; break;
+        case NumSprintAffinity: racer->sprint_affinity = clamp(racer->sprint_affinity + rounded, 1, 7); break;
+        case NumMileAffinity: racer->mile_affinity = clamp(racer->mile_affinity + rounded, 1, 7); break;
+        case NumMediumAffinity: racer->medium_affinity = clamp(racer->medium_affinity + rounded, 1, 7); break;
+        case NumLongAffinity: racer->long_affinity = clamp(racer->long_affinity + rounded, 1, 7); break;
 
-        //Miscellaneous
-        case NumPopularity: racer->popularity += rounded; break;
-        case NumFans: racer->fans += rounded; break;
+        // Miscellaneous
+        case NumPopularity: racer->popularity = clamp(racer->popularity + rounded, 0, 100); break;
+        case NumFans: racer->fans = clamp(racer->fans + rounded, 0, 999999999); break;
 
-        //Error
+        // Error
         default: break;
     }
 }
@@ -277,5 +277,6 @@ void reset_inputs(MenuInputs *inputs)
 
 int round_up(float input)
 {
-    return (input >= 0) ? (int)ceilf(input) : (int)floorf(input);
+    if (input==0) return 0;
+    return (input > 0) ? (int)ceilf(input) : (int)floorf(input);
 }
