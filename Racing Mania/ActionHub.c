@@ -5,7 +5,7 @@ typedef enum
 {
     TEMP,
     Training,
-    Resting,
+    Rest,
     Infirmary,
     Recreation,
     Racing,
@@ -41,9 +41,9 @@ static int execute (int choice, GameData *gamedata)
     switch (choice)
     {
         case Training:  return SceneTrainingHub;
-        case Resting:  return SceneActionHub;
-        case Infirmary:  return SceneActionHub;
-        case Recreation:  return SceneActionHub;
+        case Rest:   DoAction(gamedata, DoRest); return SceneActionHub;
+        case Infirmary:  DoAction(gamedata, DoInfirmary); return SceneActionHub;
+        case Recreation:  DoAction(gamedata, DoRecreation);return SceneActionHub;
         case Racing:  return SceneActionHub;
         case MainMenu:  return SceneActionHub;
         default: printf("\n\n[Error: No code to execute. Check execute() or min and max?]");    return SceneError;

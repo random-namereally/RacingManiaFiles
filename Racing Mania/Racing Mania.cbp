@@ -34,7 +34,9 @@
 		<Unit filename="ActionHub.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="ActionHub.h" />
+		<Unit filename="Action_Resolver.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="DataManager.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -42,37 +44,27 @@
 		<Unit filename="Debug.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="Debug.h" />
 		<Unit filename="GameHeaders.h" />
 		<Unit filename="GenericFunctions.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Unit filename="GenericFunctions.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
+		<Unit filename="GenericFunctions.h" />
 		<Unit filename="GenericTemplate.c">
-			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="GenericTemplate.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="SharedDisplay.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="StartCareer.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="StartCareer.h" />
 		<Unit filename="StartMenu.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="StartMenu.h" />
-		<Unit filename="TempHolder.c">
+		<Unit filename="TurnActionManager.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="TempHolder.h" />
+		<Unit filename="TurnManagers.h" />
+		<Unit filename="TurnTransitionManager.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="blackjack.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -81,6 +73,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="tempblackjackmain.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="training.h" />
+		<Unit filename="training_main.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Extensions>

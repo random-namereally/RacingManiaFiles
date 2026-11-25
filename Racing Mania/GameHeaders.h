@@ -24,9 +24,10 @@ Deeper explanations can be inside the header itself. Thank you!
 // User-defined headers
 
     #include "DataManager.h"        // Central Hub for all game data. Includes Data validation.
-    #include "GenericFunctions.h"
-    #include "blackjack.h"
-    #include "training.h"
+    #include "GenericFunctions.h"   // Central hub for all functions expected to be used in fast creation of menus
+    #include "TurnManagers.h" // pre-turn and post-turn handler
+    #include "blackjack.h" // Blackjack minigame
+    #include "training.h" // Training module
 
 // Menus
 int main_blackjack(GameData *gamedata);
