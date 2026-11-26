@@ -41,6 +41,14 @@ void initialize_game(GameData *gamedata)
 
         .popularity = 0,
         .fans = 0,
+
+        // Debuffs
+        .has_night_owl= 0,
+        .has_slacker = 0,
+        .has_slow_metabolism = 0,
+        .has_migraine = 0,
+        .has_dry_skin = 0,
+        .has_practice_poor = 0,
     };
 
     gamedata->trainer = (Trainer)
@@ -127,42 +135,50 @@ void update_racer_stat(Racer *racer, Pass stat_type, float modifier)
     switch (stat_type)
     {
         // Racer well-being
-        case NumCurrentEnergy: racer->current_energy = clamp(racer->current_energy + rounded, 0, racer->max_energy);break;
-        case NumMaxEnergy: racer->max_energy = clamp(racer->max_energy + rounded, 1, MAX_ENERGY); break;
+        case NumCurrentEnergy:          racer->current_energy       = clamp(racer->current_energy + rounded, 0, racer->max_energy); break;
+        case NumMaxEnergy:              racer->max_energy           = clamp(racer->max_energy + rounded, 1, MAX_ENERGY);            break;
 
-        case NumMood: racer->mood = clamp(racer->mood + rounded, 0, 7); break;
+        case NumMood:                   racer->mood                 = clamp(racer->mood + rounded, 0, 7);                           break;
 
         // Racing stats
-        case NumSpeed: racer->speed = clamp(racer->speed + rounded, 0, 1200); break;
-        case NumStamina: racer->stamina = clamp(racer->stamina + rounded, 0, 1200); break;
-        case NumPower: racer->power = clamp(racer->power + rounded, 0, 1200); break;
-        case NumGuts: racer->guts = clamp(racer->guts + rounded, 0, 1200); break;
-        case NumWit: racer->wit = clamp(racer->wit + rounded, 0, 1200); break;
+        case NumSpeed:                  racer->speed                = clamp(racer->speed + rounded, 0, 1200);                       break;
+        case NumStamina:                racer->stamina              = clamp(racer->stamina + rounded, 0, 1200);                     break;
+        case NumPower:                  racer->power                = clamp(racer->power + rounded, 0, 1200);                       break;
+        case NumGuts:                   racer->guts                 = clamp(racer->guts + rounded, 0, 1200);                        break;
+        case NumWit:                    racer->wit                  = clamp(racer->wit + rounded, 0, 1200);                         break;
 
         // Multipliers
-        case NumSpeedMult: racer->speed_multiplier += clamp(racer->mood + rounded, 0, MAX_MULT); break;
-        case NumStaminaMult: racer->stamina_multiplier += clamp(racer->mood + rounded, 0, MAX_MULT); break;
-        case NumPowerMult: racer->power_multiplier += clamp(racer->mood + rounded, 0, MAX_MULT); break;
-        case NumGutsMult: racer->guts_multiplier += clamp(racer->mood + rounded, 0, MAX_MULT); break;
-        case NumWitMult: racer->wit_multiplier += clamp(racer->mood + rounded, 0, MAX_MULT); break;
+        case NumSpeedMult:              racer->speed_multiplier     = clamp(racer->speed_multiplier + rounded, 0, MAX_MULT);        break;
+        case NumStaminaMult:            racer->stamina_multiplier   = clamp(racer->stamina_multiplier + rounded, 0, MAX_MULT);      break;
+        case NumPowerMult:              racer->power_multiplier     = clamp(racer->power_multiplier + rounded, 0, MAX_MULT);        break;
+        case NumGutsMult:               racer->guts_multiplier      = clamp(racer->guts_multiplier + rounded, 0, MAX_MULT);         break;
+        case NumWitMult:                racer->wit_multiplier       = clamp(racer->wit_multiplier + rounded, 0, MAX_MULT);          break;
 
         // Affinities
-        case NumFrontrunnerAffinity: racer->frontrunner_affinity = clamp(racer->frontrunner_affinity + rounded, 1, 7); break;
-        case NumPacechaserAffinity: racer->pacechaser_affinity = clamp(racer->pacechaser_affinity + rounded, 1, 7); break;
-        case NumLatesurgerAffinity: racer->latesurger_affinity = clamp(racer->latesurger_affinity + rounded, 1, 7); break;
-        case NumEndcloserAffinity: racer->endcloser_affinity = clamp(racer->endcloser_affinity + rounded, 1, 7); break;
+        case NumFrontrunnerAffinity:    racer->frontrunner_affinity = clamp(racer->frontrunner_affinity + rounded, 1, 7);           break;
+        case NumPacechaserAffinity:     racer->pacechaser_affinity  = clamp(racer->pacechaser_affinity + rounded, 1, 7);            break;
+        case NumLatesurgerAffinity:     racer->latesurger_affinity  = clamp(racer->latesurger_affinity + rounded, 1, 7);            break;
+        case NumEndcloserAffinity:      racer->endcloser_affinity   = clamp(racer->endcloser_affinity + rounded, 1, 7);             break;
 
-        case NumDirtAffinity: racer->dirt_affinity = clamp(racer->dirt_affinity + rounded, 1, 7); break;
-        case NumTurfAffinity: racer->turf_affinity = clamp(racer->turf_affinity + rounded, 1, 7); break;
+        case NumDirtAffinity:           racer->dirt_affinity        = clamp(racer->dirt_affinity + rounded, 1, 7);                  break;
+        case NumTurfAffinity:           racer->turf_affinity        = clamp(racer->turf_affinity + rounded, 1, 7);                  break;
 
-        case NumSprintAffinity: racer->sprint_affinity = clamp(racer->sprint_affinity + rounded, 1, 7); break;
-        case NumMileAffinity: racer->mile_affinity = clamp(racer->mile_affinity + rounded, 1, 7); break;
-        case NumMediumAffinity: racer->medium_affinity = clamp(racer->medium_affinity + rounded, 1, 7); break;
-        case NumLongAffinity: racer->long_affinity = clamp(racer->long_affinity + rounded, 1, 7); break;
+        case NumSprintAffinity:         racer->sprint_affinity      = clamp(racer->sprint_affinity + rounded, 1, 7);                break;
+        case NumMileAffinity:           racer->mile_affinity        = clamp(racer->mile_affinity + rounded, 1, 7);                  break;
+        case NumMediumAffinity:         racer->medium_affinity      = clamp(racer->medium_affinity + rounded, 1, 7);                break;
+        case NumLongAffinity:           racer->long_affinity        = clamp(racer->long_affinity + rounded, 1, 7);                  break;
 
         // Miscellaneous
-        case NumPopularity: racer->popularity = clamp(racer->popularity + rounded, 0, 100); break;
-        case NumFans: racer->fans = clamp(racer->fans + rounded, 0, 999999999); break;
+        case NumPopularity:             racer->popularity = clamp(racer->popularity + rounded, 0, 100);                             break;
+        case NumFans:                   racer->fans = clamp(racer->fans + rounded, 0, 999999999);                                   break;
+
+        // Debuffs
+        case NumHasNightOwl:            racer->has_night_owl         = clamp(racer->has_night_owl, 0, 1);                           break;
+        case NumHasSlacker:             racer->has_slacker           = clamp(racer->has_slacker, 0, 1);                             break;
+        case NumHasSlowMetabolism:      racer->has_slow_metabolism   = clamp(racer->has_slow_metabolism, 0, 1);                     break;
+        case NumHasMigraine:            racer->has_migraine          = clamp(racer->has_migraine, 0, 1);                            break;
+        case NumHasDrySkin:             racer->has_dry_skin          = clamp(racer->has_dry_skin, 0, 1);                            break;
+        case NumHasPracticePoor:        racer->has_practice_poor     = clamp(racer->has_practice_poor, 0, 1);                       break;
 
         // Error
         default: break;
@@ -176,10 +192,10 @@ void update_trainer_stat(Trainer *trainer, Pass stat_type, int modifier)
     {
 
         // Trainer finance
-        case NumCash: trainer->cash += modifier; break;
-        case NumDebt: trainer->debt += modifier; break;
-        case NumDebtLimit: trainer->debt_limit += modifier; break;
-        case NumCreditScore: trainer->credit_score += modifier; break;
+        case NumCash:                   trainer->cash               += modifier; break;
+        case NumDebt:                   trainer->debt               += modifier; break;
+        case NumDebtLimit:              trainer->debt_limit         += modifier; break;
+        case NumCreditScore:            trainer->credit_score       += modifier; break;
 
         //Error
         default: break;

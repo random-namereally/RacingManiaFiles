@@ -15,7 +15,6 @@ typedef enum
 static void display_menu (int min, int max, GameData *gamedata, MenuInputs *input);
 static void display_nameselect ();
 static void display_confirm(int first_time, int, GameData *gamedata, MenuInputs *input);
-static void get_input(int min, int max, GameData *gamedata, MenuInputs *input);
 static int execute (MenuInputs *input, GameData *gamedata, int can_start);
 static void name_entity(MenuInputs *input, GameData *gamedata, int mode);
 static void confirm_name(GameData *gamedata, MenuInputs *input, int mode, int first_time);

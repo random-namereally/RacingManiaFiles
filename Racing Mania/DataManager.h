@@ -44,28 +44,43 @@ typedef enum
     NumCurrentEnergy,
     NumMaxEnergy,
     NumMood,
+
     NumSpeed,
     NumStamina,
     NumPower,
     NumGuts,
     NumWit,
+
     NumSpeedMult,
     NumStaminaMult,
     NumPowerMult,
     NumGutsMult,
     NumWitMult,
+
     NumFrontrunnerAffinity,
     NumPacechaserAffinity,
     NumLatesurgerAffinity,
     NumEndcloserAffinity,
+
     NumDirtAffinity,
     NumTurfAffinity,
+
     NumSprintAffinity,
     NumMileAffinity,
     NumMediumAffinity,
     NumLongAffinity,
+
     NumPopularity,
     NumFans,
+
+    NumHasNightOwl,
+    NumHasSlacker,
+    NumHasSlowMetabolism,
+    NumHasMigraine,
+    NumHasDrySkin,
+    NumHasPracticePoor,
+
+
     // Trainer stats
     NumCash,
     NumDebt,
@@ -143,6 +158,13 @@ typedef struct
 
     int popularity;
     int fans;
+
+    int has_night_owl;
+    int has_slacker;
+    int has_slow_metabolism;
+    int has_migraine;
+    int has_dry_skin;
+    int has_practice_poor;
 } Racer;
 
 typedef struct

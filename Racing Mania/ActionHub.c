@@ -45,7 +45,7 @@ static int execute (int choice, GameData *gamedata)
         case Infirmary:  DoAction(gamedata, DoInfirmary); return SceneActionHub;
         case Recreation:  DoAction(gamedata, DoRecreation);return SceneActionHub;
         case Racing:  return SceneActionHub;
-        case MainMenu:  return SceneActionHub;
+        case MainMenu:  return SceneStartMenu;
         default: printf("\n\n[Error: No code to execute. Check execute() or min and max?]");    return SceneError;
     }
 }

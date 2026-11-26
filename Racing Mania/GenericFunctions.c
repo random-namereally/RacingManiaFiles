@@ -74,7 +74,6 @@ void std_header(const char *header) {
 }
 
 void std_prompt(const char *prompt, int min, int max) {
-    printf("\n--------------------------------------------------\n");
     if (min!=0||max!=0) {printf("Enter %s(%d-%d): ", prompt, min, max);}
     else if (min == 0 && max == 0) {printf("Enter %s: ", prompt);}
     else {printf("Error: neither character or integer selector go to function prompt()"); exit(1);}
