@@ -122,7 +122,7 @@ void increment_turn(Date *date)
     date->char_year[NAMESIZE - 1] = '\0';
 }
 
-static int clamp(int value, int low, int high)
+int clamp(int value, int low, int high)
     { return value < low ? // Is value less than low?
             low : value > high ? // If true return lowerbound, if not check if value higher than high
                 high : value;  // If true return high, if not return initial value

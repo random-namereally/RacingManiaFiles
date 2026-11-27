@@ -9,7 +9,7 @@
 
 1793685360 c:\users\youop\downloads\racing mania\gamelogic.h
 
-1795679854 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\main.c
+1795798786 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\main.c
 	"GameHeaders.h"
 
 1794326641 c:\users\youop\documents\github\racingmaniafiles\racing mania\gamelogic.h
@@ -50,12 +50,12 @@
 
 1794305964 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\shareddisplay.c
 
-1795679854 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\datamanager.c
+1795704673 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\datamanager.c
 	"GameHeaders.h"
 
-1795679854 c:\users\youop\documents\github\racingmaniafiles\racing mania\datamanager.h
+1795704673 c:\users\youop\documents\github\racingmaniafiles\racing mania\datamanager.h
 
-1795679143 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\actionhub.c
+1795796919 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\actionhub.c
 	"GameHeaders.h"
 
 1795569169 c:\users\youop\documents\github\racingmaniafiles\racing mania\gameheaders.h
@@ -107,7 +107,7 @@
 	"blackjack.h"
 	"GameHeaders.h"
 
-1795567858 c:\users\youop\documents\github\racingmaniafiles\racing mania\blackjack.h
+1795797654 c:\users\youop\documents\github\racingmaniafiles\racing mania\blackjack.h
 	"GameHeaders.h"
 
 1795526784 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\tempblackjackmain.c
@@ -130,7 +130,7 @@
 	"training.h"
 	"GameHeaders.h"
 
-1795569884 c:\users\youop\documents\github\racingmaniafiles\racing mania\training.h
+1795798756 c:\users\youop\documents\github\racingmaniafiles\racing mania\training.h
 	"GameHeaders.h"
 
 1795579064 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\generictemplate.c
@@ -139,14 +139,20 @@
 1795526834 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\postturnshandler.c
 	"GameHeaders.h"
 
-1795680336 c:\users\youop\documents\github\racingmaniafiles\racing mania\turnmanagers.h
+1795797669 c:\users\youop\documents\github\racingmaniafiles\racing mania\turnmanagers.h
 
 1795574281 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\turntransitionmanager.c
 	"GameHeaders.h"
 
-1795680431 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\turnactionmanager.c
+1795797248 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\turnactionmanager.c
 	"GameHeaders.h"
 
 1795680263 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\restmanager.c
+	"GameHeaders.h"
+
+1795797248 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\infirmarymanager.c
+	"GameHeaders.h"
+
+1795798735 source:c:\users\youop\documents\github\racingmaniafiles\racing mania\traininghub.c
 	"GameHeaders.h"
 

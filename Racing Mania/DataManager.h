@@ -2,7 +2,7 @@
 #define DATAMANAGER_H
 
 // Game version for flair
-#define GAME_VERSION "v0.2"
+#define GAME_VERSION "v0.3"
 #define NAMESIZE 51
 #define MAX_ENERGY 1000
 #define MAX_MULT 10
@@ -299,6 +299,7 @@ void update_trainer_name(Trainer *trainer, const char* input);
 void reset_inputs(MenuInputs *inputs);
 int input_integer(int min, int max, int *input);
 int input_character(char *input);
+int clamp(int value, int low, int high);
 int round_up(float input);
 
 #endif

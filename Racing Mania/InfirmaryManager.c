@@ -31,6 +31,7 @@ int main_infirmary(GameData *gamedata)
         update_racer_stat(&gamedata->trainee, condition, result); // Update stats to new or old stat
         update_racer_stat(&gamedata->trainee, NumCurrentEnergy, 20); // Gives 20 energy
     }
+    else {return 1;}
 
     // Draw it
     draw_result(&gamedata->trainee, condition, result);
@@ -54,7 +55,7 @@ static int is_ill(Racer *trainee)
 static int roll_cure()
 {
     // Returns 1 if uncured, 0 if cured
-    int roll = (rand() % 100) + 1; // Generates from 1 to 1000
+    int roll = (rand() % 100) + 1; // Generates from 1 to 100
     return (roll<=FAILURECHANCE);
 
 }

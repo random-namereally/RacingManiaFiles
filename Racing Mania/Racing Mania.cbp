@@ -49,6 +49,12 @@
 		<Unit filename="GenericTemplate.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="InfirmaryManager.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="RestManager.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="StartCareer.c">
 			<Option compilerVar="CC" />
 		</Unit>

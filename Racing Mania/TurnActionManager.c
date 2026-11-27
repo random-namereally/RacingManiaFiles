@@ -2,24 +2,14 @@
 
 void DoAction(GameData *gamedata, Actions action)
 {
-    int invalid = 0; // Used by infirmary to not increment a turn on the wrong press
+    int invalid = 0; // Used by infirmary and train to not increment
 
     switch (action)
     {
-        case TrainSpeed:
+        case DoTrain:
+            invalid = main_training_hub(gamedata);
             break;
 
-        case TrainPower:
-            break;
-
-        case TrainStamina:
-            break;
-
-        case TrainGuts:
-            break;
-
-        case TrainWits:
-            break;
 
         case DoRest:
             main_rest(gamedata);

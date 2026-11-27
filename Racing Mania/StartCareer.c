@@ -105,19 +105,15 @@ static void name_entity(MenuInputs *input, GameData *gamedata, int mode)
         if (mode==1)
         {
             adjust_empty(input->name, 1);
-            printf("The name of your uma is %s", input->name);
-            getflush();
             confirm_name(gamedata, input, 1, first_time);
         }
         else
         {
             adjust_empty(input->name, 2);
             confirm_name(gamedata, input, 2, first_time);
-            printf("\n1 [debug] choice=%d confirm=%d\n", input->choice, input->confirm);
-            getflush();
+
         }
         first_time = 0;
-        getflush();
     }
 
 

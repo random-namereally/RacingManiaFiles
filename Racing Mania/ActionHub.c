@@ -40,7 +40,7 @@ static int execute (int choice, GameData *gamedata)
 {
     switch (choice)
     {
-        case Training:  return SceneTrainingHub;
+        case Training:  DoAction(gamedata, DoTrain) ;return SceneActionHub;
         case Rest:   DoAction(gamedata, DoRest); return SceneActionHub;
         case Infirmary:  DoAction(gamedata, DoInfirmary); return SceneActionHub;
         case Recreation:  DoAction(gamedata, DoRecreation);return SceneActionHub;
