@@ -1,8 +1,9 @@
 #include "GameHeaders.h"
+#include "DataManager.h"
+
 #ifndef EVENTS_H
 #define EVENTS_H
 //Stub for now, but will be filled so dont delete
-
 
 #define GAIN_STAT_SMALL 1
 
@@ -36,6 +37,16 @@
 
 #define FALL 4
 
-#endif
+//checks if it is winter and makes a roll for the event
+void winter_events(GameData *gamedata);
+
+//checks if it is spring and makes a roll for the event
+void spring_events(GameData *gamedata);
+
+//checks if it is summer and makes a roll for the event
+void summer_events(GameData *gamedata);
+
+//checks if it is fall and makes a roll for the event
+void fall_events(GameData *gamedata);
 
 #endif
